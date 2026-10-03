@@ -1,0 +1,253 @@
+[
+    {
+      "id": "coding-review",
+      "title": "Coding Review",
+      "tracks": [
+        {
+          "id": "algorithms",
+          "title": "Algorithms",
+          "modules": [
+            {
+              "id": "arrays-hashing",
+              "title": "Arrays and hashing",
+              "tasks": [
+                {
+                  "id": "task-1",
+                  "title": "Two Sum",
+                  "ref": "LC 1",
+                  "status": "done",
+                  "week": 1,
+                  "notes": "",
+                  "links": [
+                    {
+                      "label": "Problem on LeetCode",
+                      "url": "https://leetcode.com/problems/two-sum/"
+                    }
+                  ]
+                },
+                {
+                  "id": "task-2",
+                  "title": "Contains Duplicate",
+                  "ref": "LC 217",
+                  "status": "done",
+                  "week": 1,
+                  "notes": "",
+                  "links": [
+                    {
+                      "label": "Problem on LeetCode",
+                      "url": "https://leetcode.com/problems/contains-duplicate/"
+                    }
+                  ]
+                },
+                {
+                  "id": "task-3",
+                  "title": "Group Anagrams",
+                  "ref": "LC 49",
+                  "status": "in-progress",
+                  "week": 1,
+                  "notes": "Key idea: use the sorted string (or a 26-letter count) as the hash map key.\n\nFirst try sorted each word, O(n * k log k). Redo with the count key in two days.",
+                  "links": [
+                    {
+                      "label": "Problem on LeetCode",
+                      "url": "https://leetcode.com/problems/group-anagrams/"
+                    },
+                    {
+                      "label": "Video walkthrough",
+                      "url": "https://neetcode.io/"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "sliding-window",
+              "title": "Sliding window",
+              "tasks": [
+                {
+                  "id": "task-4",
+                  "title": "Best Time to Buy and Sell Stock",
+                  "ref": "LC 121",
+                  "status": "not-started",
+                  "week": 1,
+                  "notes": "",
+                  "links": [
+                    {
+                      "label": "Problem on LeetCode",
+                      "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"
+                    }
+                  ]
+                },
+                {
+                  "id": "task-5",
+                  "title": "Longest Substring Without Repeating Characters",
+                  "ref": "LC 3",
+                  "status": "not-started",
+                  "week": 1,
+                  "notes": "",
+                  "links": [
+                    {
+                      "label": "Problem on LeetCode",
+                      "url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "two-pointers",
+              "title": "Two pointers",
+              "tasks": [
+                {
+                  "id": "task-6",
+                  "title": "Valid Palindrome",
+                  "ref": "LC 125",
+                  "status": "not-started",
+                  "week": 1,
+                  "notes": "",
+                  "links": [
+                    {
+                      "label": "Problem on LeetCode",
+                      "url": "https://leetcode.com/problems/valid-palindrome/"
+                    }
+                  ]
+                },
+                {
+                  "id": "task-7",
+                  "title": "3Sum",
+                  "ref": "LC 15",
+                  "status": "not-started",
+                  "week": 2,
+                  "notes": "",
+                  "links": [
+                    {
+                      "label": "Problem on LeetCode",
+                      "url": "https://leetcode.com/problems/3sum/"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "system-design",
+          "title": "System design",
+          "modules": [
+            {
+              "id": "fundamentals",
+              "title": "Fundamentals",
+              "tasks": [
+                {
+                  "id": "task-8",
+                  "title": "Scaling and load balancing",
+                  "status": "not-started",
+                  "week": 1,
+                  "notes": "",
+                  "links": []
+                },
+                {
+                  "id": "task-9",
+                  "title": "Caching strategies",
+                  "status": "not-started",
+                  "week": 1,
+                  "notes": "",
+                  "links": []
+                },
+                {
+                  "id": "task-10",
+                  "title": "SQL vs. NoSQL",
+                  "status": "not-started",
+                  "week": 1,
+                  "notes": "",
+                  "links": []
+                }
+              ]
+            },
+            {
+              "id": "practice-designs",
+              "title": "Practice designs",
+              "tasks": [
+                {
+                  "id": "task-11",
+                  "title": "Design a URL shortener",
+                  "status": "not-started",
+                  "week": 3,
+                  "notes": "",
+                  "links": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "mini-projects",
+          "title": "Mini projects",
+          "modules": [
+            {
+              "id": "builds",
+              "title": "Weekly builds",
+              "tasks": [
+                {
+                  "id": "task-12",
+                  "title": "LRU cache library with tests",
+                  "status": "not-started",
+                  "week": 1,
+                  "notes": "",
+                  "links": []
+                },
+                {
+                  "id": "task-13",
+                  "title": "Rate limiter middleware (token bucket)",
+                  "status": "not-started",
+                  "week": 2,
+                  "notes": "",
+                  "links": []
+                },
+                {
+                  "id": "task-14",
+                  "title": "URL shortener with Postgres and Redis",
+                  "status": "not-started",
+                  "week": 3,
+                  "notes": "",
+                  "links": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "devops",
+          "title": "DevOps",
+          "modules": [
+            {
+              "id": "pipelines",
+              "title": "Pipelines and infrastructure",
+              "tasks": [
+                {
+                  "id": "task-15",
+                  "title": "GitHub Actions deploy pipeline",
+                  "status": "not-started",
+                  "week": 4,
+                  "notes": "",
+                  "links": []
+                },
+                {
+                  "id": "task-16",
+                  "title": "Terraform for the week 3 app",
+                  "status": "not-started",
+                  "week": 4,
+                  "notes": "",
+                  "links": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kubernetes-basics",
+      "title": "Kubernetes Basics",
+      "tracks": []
+    }
+  ]

@@ -1,5 +1,5 @@
 import { Select } from "radix-ui"
-import { ChevronDown } from "lucide-react"
+import { Check, ChevronDown } from "lucide-react"
 
 type Option = {
     value: string
@@ -11,6 +11,11 @@ type DropdownProps = {
     value?: string
     placeholder?: string
     onChange?: (value: string) => void
+    /** Accessible name when there is no visible <label> */
+    ariaLabel?: string
+    id?: string
+    /** Larger, bolder trigger used for the roadmap switcher */
+    prominent?: boolean
 }
 
 export default function Dropdown({
@@ -18,37 +23,23 @@ export default function Dropdown({
     value,
     placeholder = "Select an option",
     onChange,
+    ariaLabel,
+    id,
+    prominent = false,
 }: DropdownProps) {
     return (
         <Select.Root value={value} onValueChange={onChange}>
             <Select.Trigger
-                className="
-          flex
-          h-11
-          w-full
-          items-center
-          justify-between
-          rounded-lg
-          border
-          border-gray-300
-          bg-white
-          px-3
-          text-sm
-          font-medium
-          text-gray-900
-          shadow-sm
-          outline-none
-          transition
-          hover:border-gray-400
-          focus:border-gray-400
-          focus:ring-2
-          focus:ring-gray-200
-        "
+                id={id}
+                aria-label={ariaLabel}
+                className={`flex w-full items-center justify-between gap-2 rounded-lg border border-slate-300 bg-white px-3 text-left text-slate-900 outline-none transition hover:border-slate-400 focus-visible:border-blue-700 focus-visible:ring-2 focus-visible:ring-blue-200 ${prominent ? "h-12 text-base font-semibold" : "h-11 text-[15px]"
+                    }`}
             >
-                <Select.Value placeholder={placeholder} />
-
+                <span className="truncate">
+                    <Select.Value placeholder={placeholder} />
+                </span>
                 <Select.Icon>
-                    <ChevronDown className="h-4 w-4 text-gray-500" />
+                    <ChevronDown className="h-4 w-4 text-slate-500" />
                 </Select.Icon>
             </Select.Trigger>
 
@@ -56,39 +47,19 @@ export default function Dropdown({
                 <Select.Content
                     position="popper"
                     sideOffset={5}
-                    className="
-            z-50
-            min-w-[var(--radix-select-trigger-width)]
-            overflow-hidden
-            rounded-lg
-            border
-            border-gray-200
-            bg-white
-            p-1
-            shadow-lg
-          "
+                    className="z-50 min-w-(--radix-select-trigger-width) overflow-hidden rounded-lg border border-slate-200 bg-white p-1 font-sans shadow-lg"
                 >
                     <Select.Viewport>
                         {options.map((option) => (
                             <Select.Item
                                 key={option.value}
                                 value={option.value}
-                                className="
-                  cursor-pointer
-                  select-none
-                  rounded-md
-                  px-3
-                  py-2
-                  text-sm
-                  text-gray-700
-                  outline-none
-                  transition
-                  data-[highlighted]:bg-gray-100
-                  data-[highlighted]:text-gray-900
-                  data-[state=checked]:font-medium
-                "
+                                className="flex cursor-pointer select-none items-center justify-between gap-3 rounded-md px-3 py-2.5 text-[15px] text-slate-700 outline-none data-highlighted:bg-slate-100 data-highlighted:text-slate-900 data-[state=checked]:font-medium data-[state=checked]:text-slate-900"
                             >
                                 <Select.ItemText>{option.label}</Select.ItemText>
+                                <Select.ItemIndicator>
+                                    <Check className="h-4 w-4 text-blue-700" />
+                                </Select.ItemIndicator>
                             </Select.Item>
                         ))}
                     </Select.Viewport>
