@@ -1,7 +1,10 @@
-import { Plus } from "lucide-react"
+import { useState } from "react"
+import { ContextMenu } from "radix-ui"
+import { Plus, Trash2 } from "lucide-react"
 import Dropdown from "./DropdownMenu"
-import { countTasks } from "../lib"
-import type { Roadmap } from "../types"
+import ConfirmDeleteDialog from "./ConfirmDeleteDialog"
+import { countTasks, describeTrackContents } from "../lib"
+import type { Roadmap, Track } from "../types"
 
 type RoadmapTabProps = {
     roadmaps: Roadmap[]
@@ -9,6 +12,8 @@ type RoadmapTabProps = {
     trackId?: string
     onSelectRoadmap: (id: string) => void
     onSelectTrack: (id: string) => void
+    onCreateTrack: (roadmapId: string) => string
+    onDeleteTrack: (id: string) => void
 }
 
 const sectionLabel = "px-3 font-mono text-xs uppercase tracking-wider text-slate-600"
@@ -19,7 +24,11 @@ export default function RoadmapTab({
     trackId,
     onSelectRoadmap,
     onSelectTrack,
+    onCreateTrack,
+    onDeleteTrack
 }: RoadmapTabProps) {
+    const [trackToDelete, setTrackToDelete] = useState<Track | null>(null)
+
     return (
         <nav
             id="roadmap-tab"
@@ -55,21 +64,35 @@ export default function RoadmapTab({
                     const { done, total } = countTasks(t.modules)
                     const active = t.id === trackId
                     return (
-                        <button
-                            key={t.id}
-                            type="button"
-                            aria-current={active ? "true" : undefined}
-                            onClick={() => onSelectTrack(t.id)}
-                            className={`flex min-h-11 items-center justify-between gap-3 rounded-lg px-3 text-left ${active
-                                ? "bg-blue-50 font-medium text-blue-800"
-                                : "text-slate-900 hover:bg-slate-100"
-                                }`}
-                        >
-                            <span>{t.title}</span>
-                            <span className={`font-mono text-[13px] ${active ? "" : "text-slate-600"}`}>
-                                {done}/{total}
-                            </span>
-                        </button>
+                        <ContextMenu.Root key={t.id}>
+                            <ContextMenu.Trigger asChild>
+                                <button
+                                    type="button"
+                                    aria-current={active ? "true" : undefined}
+                                    onClick={() => onSelectTrack(t.id)}
+                                    className={`flex min-h-11 items-center justify-between gap-3 rounded-lg px-3 text-left ${active
+                                        ? "bg-blue-50 font-medium text-blue-800"
+                                        : "text-slate-900 hover:bg-slate-100"
+                                        }`}
+                                >
+                                    <span>{t.title}</span>
+                                    <span className={`font-mono text-[13px] ${active ? "" : "text-slate-600"}`}>
+                                        {done}/{total}
+                                    </span>
+                                </button>
+                            </ContextMenu.Trigger>
+                            <ContextMenu.Portal>
+                                <ContextMenu.Content className="z-50 min-w-44 overflow-hidden rounded-lg border border-slate-200 bg-white p-1 font-sans text-[15px] shadow-lg">
+                                    <ContextMenu.Item
+                                        onSelect={() => setTrackToDelete(t)}
+                                        className="flex cursor-pointer select-none items-center gap-2 rounded-md px-3 py-2.5 text-red-700 outline-none data-highlighted:bg-red-50"
+                                    >
+                                        <Trash2 className="h-4 w-4" />
+                                        Delete track
+                                    </ContextMenu.Item>
+                                </ContextMenu.Content>
+                            </ContextMenu.Portal>
+                        </ContextMenu.Root>
                     )
                 })}
             </div>
@@ -77,10 +100,27 @@ export default function RoadmapTab({
             <button
                 type="button"
                 className="flex min-h-11 items-center gap-1.5 rounded-lg border border-dashed border-slate-300 px-3 text-left text-slate-600 hover:border-slate-400 hover:bg-slate-50 hover:text-slate-900"
+                onClick={() => {
+                    const newTrackId = onCreateTrack(roadmap.id)
+                    onSelectTrack(newTrackId)
+                }}
             >
                 <Plus className="h-4 w-4" />
                 New track
             </button>
+
+            <ConfirmDeleteDialog
+                open={trackToDelete !== null}
+                onOpenChange={(open) => {
+                    if (!open) setTrackToDelete(null)
+                }}
+                title={`Delete "${trackToDelete?.title}"?`}
+                description={trackToDelete ? describeTrackContents(trackToDelete) : ""}
+                confirmLabel="Delete track"
+                onConfirm={() => {
+                    if (trackToDelete) onDeleteTrack(trackToDelete.id)
+                }}
+            />
         </nav>
     )
 }
