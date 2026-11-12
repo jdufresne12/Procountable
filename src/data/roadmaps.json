@@ -1,0 +1,1853 @@
+[
+  {
+    "id": "coding-review",
+    "title": "Coding Review",
+    "tracks": [
+      {
+        "id": "track-algorithms",
+        "title": "Algorithms",
+        "modules": [
+          {
+            "id": "module-arrays-and-hashing",
+            "title": "Arrays and hashing",
+            "tasks": [
+              {
+                "id": "task-two-sum",
+                "title": "Two Sum",
+                "ref": "LC 1",
+                "status": "not-started",
+                "week": 1,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/two-sum/"
+                  }
+                ]
+              },
+              {
+                "id": "task-contains-duplicate",
+                "title": "Contains Duplicate",
+                "ref": "LC 217",
+                "status": "not-started",
+                "week": 1,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/contains-duplicate/"
+                  }
+                ]
+              },
+              {
+                "id": "task-valid-anagram",
+                "title": "Valid Anagram",
+                "ref": "LC 242",
+                "status": "not-started",
+                "week": 1,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/valid-anagram/"
+                  }
+                ]
+              },
+              {
+                "id": "task-group-anagrams",
+                "title": "Group Anagrams",
+                "ref": "LC 49",
+                "status": "not-started",
+                "week": 1,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/group-anagrams/"
+                  }
+                ]
+              },
+              {
+                "id": "task-top-k-frequent-elements",
+                "title": "Top K Frequent Elements",
+                "ref": "LC 347",
+                "status": "not-started",
+                "week": 1,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/top-k-frequent-elements/"
+                  }
+                ]
+              },
+              {
+                "id": "task-product-of-array-except-self",
+                "title": "Product of Array Except Self",
+                "ref": "LC 238",
+                "status": "not-started",
+                "week": 7,
+                "notes": "Review-week addition.",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/product-of-array-except-self/"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "module-two-pointers",
+            "title": "Two pointers",
+            "tasks": [
+              {
+                "id": "task-valid-palindrome",
+                "title": "Valid Palindrome",
+                "ref": "LC 125",
+                "status": "not-started",
+                "week": 1,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/valid-palindrome/"
+                  }
+                ]
+              },
+              {
+                "id": "task-3sum",
+                "title": "3Sum",
+                "ref": "LC 15",
+                "status": "not-started",
+                "week": 1,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/3sum/"
+                  }
+                ]
+              },
+              {
+                "id": "task-container-with-most-water",
+                "title": "Container With Most Water",
+                "ref": "LC 11",
+                "status": "not-started",
+                "week": 7,
+                "notes": "Review-week addition.",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/container-with-most-water/"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "module-sliding-window",
+            "title": "Sliding window",
+            "tasks": [
+              {
+                "id": "task-best-time-to-buy-and-sell-stock",
+                "title": "Best Time to Buy and Sell Stock",
+                "ref": "LC 121",
+                "status": "not-started",
+                "week": 1,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"
+                  }
+                ]
+              },
+              {
+                "id": "task-longest-substring-without-repeating-characters",
+                "title": "Longest Substring Without Repeating Characters",
+                "ref": "LC 3",
+                "status": "not-started",
+                "week": 1,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "module-stacks",
+            "title": "Stacks",
+            "tasks": [
+              {
+                "id": "task-valid-parentheses",
+                "title": "Valid Parentheses",
+                "ref": "LC 20",
+                "status": "not-started",
+                "week": 2,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/valid-parentheses/"
+                  }
+                ]
+              },
+              {
+                "id": "task-min-stack",
+                "title": "Min Stack",
+                "ref": "LC 155",
+                "status": "not-started",
+                "week": 2,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/min-stack/"
+                  }
+                ]
+              },
+              {
+                "id": "task-daily-temperatures",
+                "title": "Daily Temperatures",
+                "ref": "LC 739",
+                "status": "not-started",
+                "week": 2,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/daily-temperatures/"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "module-binary-search",
+            "title": "Binary search",
+            "tasks": [
+              {
+                "id": "task-binary-search",
+                "title": "Binary Search",
+                "ref": "LC 704",
+                "status": "not-started",
+                "week": 2,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/binary-search/"
+                  }
+                ]
+              },
+              {
+                "id": "task-find-minimum-in-rotated-sorted-array",
+                "title": "Find Minimum in Rotated Sorted Array",
+                "ref": "LC 153",
+                "status": "not-started",
+                "week": 2,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/"
+                  }
+                ]
+              },
+              {
+                "id": "task-search-in-rotated-sorted-array",
+                "title": "Search in Rotated Sorted Array",
+                "ref": "LC 33",
+                "status": "not-started",
+                "week": 2,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/search-in-rotated-sorted-array/"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "module-linked-lists",
+            "title": "Linked lists",
+            "tasks": [
+              {
+                "id": "task-reverse-linked-list",
+                "title": "Reverse Linked List",
+                "ref": "LC 206",
+                "status": "not-started",
+                "week": 2,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/reverse-linked-list/"
+                  }
+                ]
+              },
+              {
+                "id": "task-merge-two-sorted-lists",
+                "title": "Merge Two Sorted Lists",
+                "ref": "LC 21",
+                "status": "not-started",
+                "week": 2,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/merge-two-sorted-lists/"
+                  }
+                ]
+              },
+              {
+                "id": "task-linked-list-cycle",
+                "title": "Linked List Cycle",
+                "ref": "LC 141",
+                "status": "not-started",
+                "week": 2,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/linked-list-cycle/"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "module-trees",
+            "title": "Trees",
+            "tasks": [
+              {
+                "id": "task-invert-binary-tree",
+                "title": "Invert Binary Tree",
+                "ref": "LC 226",
+                "status": "not-started",
+                "week": 3,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/invert-binary-tree/"
+                  }
+                ]
+              },
+              {
+                "id": "task-maximum-depth-of-binary-tree",
+                "title": "Maximum Depth of Binary Tree",
+                "ref": "LC 104",
+                "status": "not-started",
+                "week": 3,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/"
+                  }
+                ]
+              },
+              {
+                "id": "task-same-tree",
+                "title": "Same Tree",
+                "ref": "LC 100",
+                "status": "not-started",
+                "week": 3,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/same-tree/"
+                  }
+                ]
+              },
+              {
+                "id": "task-subtree-of-another-tree",
+                "title": "Subtree of Another Tree",
+                "ref": "LC 572",
+                "status": "not-started",
+                "week": 3,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/subtree-of-another-tree/"
+                  }
+                ]
+              },
+              {
+                "id": "task-binary-tree-level-order-traversal",
+                "title": "Binary Tree Level Order Traversal",
+                "ref": "LC 102",
+                "status": "not-started",
+                "week": 3,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/binary-tree-level-order-traversal/"
+                  }
+                ]
+              },
+              {
+                "id": "task-binary-tree-right-side-view",
+                "title": "Binary Tree Right Side View",
+                "ref": "LC 199",
+                "status": "not-started",
+                "week": 3,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/binary-tree-right-side-view/"
+                  }
+                ]
+              },
+              {
+                "id": "task-validate-binary-search-tree",
+                "title": "Validate Binary Search Tree",
+                "ref": "LC 98",
+                "status": "not-started",
+                "week": 3,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/validate-binary-search-tree/"
+                  }
+                ]
+              },
+              {
+                "id": "task-lowest-common-ancestor-of-a-binary-search-tree",
+                "title": "Lowest Common Ancestor of a Binary Search Tree",
+                "ref": "LC 235",
+                "status": "not-started",
+                "week": 3,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/"
+                  }
+                ]
+              },
+              {
+                "id": "task-kth-smallest-element-in-a-bst",
+                "title": "Kth Smallest Element in a BST",
+                "ref": "LC 230",
+                "status": "not-started",
+                "week": 3,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/kth-smallest-element-in-a-bst/"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "module-graphs",
+            "title": "Graphs",
+            "tasks": [
+              {
+                "id": "task-number-of-islands",
+                "title": "Number of Islands",
+                "ref": "LC 200",
+                "status": "not-started",
+                "week": 4,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/number-of-islands/"
+                  }
+                ]
+              },
+              {
+                "id": "task-clone-graph",
+                "title": "Clone Graph",
+                "ref": "LC 133",
+                "status": "not-started",
+                "week": 4,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/clone-graph/"
+                  }
+                ]
+              },
+              {
+                "id": "task-rotting-oranges",
+                "title": "Rotting Oranges",
+                "ref": "LC 994",
+                "status": "not-started",
+                "week": 4,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/rotting-oranges/"
+                  }
+                ]
+              },
+              {
+                "id": "task-pacific-atlantic-water-flow",
+                "title": "Pacific Atlantic Water Flow",
+                "ref": "LC 417",
+                "status": "not-started",
+                "week": 4,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/pacific-atlantic-water-flow/"
+                  }
+                ]
+              },
+              {
+                "id": "task-course-schedule",
+                "title": "Course Schedule",
+                "ref": "LC 207",
+                "status": "not-started",
+                "week": 4,
+                "notes": "Topological sort / cycle detection.",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/course-schedule/"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "module-heaps",
+            "title": "Heaps",
+            "tasks": [
+              {
+                "id": "task-kth-largest-element-in-an-array",
+                "title": "Kth Largest Element in an Array",
+                "ref": "LC 215",
+                "status": "not-started",
+                "week": 4,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/kth-largest-element-in-an-array/"
+                  }
+                ]
+              },
+              {
+                "id": "task-k-closest-points-to-origin",
+                "title": "K Closest Points to Origin",
+                "ref": "LC 973",
+                "status": "not-started",
+                "week": 4,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/k-closest-points-to-origin/"
+                  }
+                ]
+              },
+              {
+                "id": "task-task-scheduler",
+                "title": "Task Scheduler",
+                "ref": "LC 621",
+                "status": "not-started",
+                "week": 4,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/task-scheduler/"
+                  }
+                ]
+              },
+              {
+                "id": "task-find-median-from-data-stream",
+                "title": "Find Median from Data Stream",
+                "ref": "LC 295",
+                "status": "not-started",
+                "week": 4,
+                "notes": "Hard. Two heaps.",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/find-median-from-data-stream/"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "module-backtracking",
+            "title": "Backtracking",
+            "tasks": [
+              {
+                "id": "task-subsets",
+                "title": "Subsets",
+                "ref": "LC 78",
+                "status": "not-started",
+                "week": 5,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/subsets/"
+                  }
+                ]
+              },
+              {
+                "id": "task-combination-sum",
+                "title": "Combination Sum",
+                "ref": "LC 39",
+                "status": "not-started",
+                "week": 5,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/combination-sum/"
+                  }
+                ]
+              },
+              {
+                "id": "task-permutations",
+                "title": "Permutations",
+                "ref": "LC 46",
+                "status": "not-started",
+                "week": 5,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/permutations/"
+                  }
+                ]
+              },
+              {
+                "id": "task-word-search",
+                "title": "Word Search",
+                "ref": "LC 79",
+                "status": "not-started",
+                "week": 5,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/word-search/"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "module-intervals-and-greedy",
+            "title": "Intervals and greedy",
+            "tasks": [
+              {
+                "id": "task-merge-intervals",
+                "title": "Merge Intervals",
+                "ref": "LC 56",
+                "status": "not-started",
+                "week": 5,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/merge-intervals/"
+                  }
+                ]
+              },
+              {
+                "id": "task-insert-interval",
+                "title": "Insert Interval",
+                "ref": "LC 57",
+                "status": "not-started",
+                "week": 5,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/insert-interval/"
+                  }
+                ]
+              },
+              {
+                "id": "task-non-overlapping-intervals",
+                "title": "Non-overlapping Intervals",
+                "ref": "LC 435",
+                "status": "not-started",
+                "week": 5,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/non-overlapping-intervals/"
+                  }
+                ]
+              },
+              {
+                "id": "task-maximum-subarray",
+                "title": "Maximum Subarray",
+                "ref": "LC 53",
+                "status": "not-started",
+                "week": 5,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/maximum-subarray/"
+                  }
+                ]
+              },
+              {
+                "id": "task-jump-game",
+                "title": "Jump Game",
+                "ref": "LC 55",
+                "status": "not-started",
+                "week": 5,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/jump-game/"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "module-1-d-dynamic-programming",
+            "title": "1-D dynamic programming",
+            "tasks": [
+              {
+                "id": "task-climbing-stairs",
+                "title": "Climbing Stairs",
+                "ref": "LC 70",
+                "status": "not-started",
+                "week": 6,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/climbing-stairs/"
+                  }
+                ]
+              },
+              {
+                "id": "task-house-robber",
+                "title": "House Robber",
+                "ref": "LC 198",
+                "status": "not-started",
+                "week": 6,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/house-robber/"
+                  }
+                ]
+              },
+              {
+                "id": "task-house-robber-ii",
+                "title": "House Robber II",
+                "ref": "LC 213",
+                "status": "not-started",
+                "week": 6,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/house-robber-ii/"
+                  }
+                ]
+              },
+              {
+                "id": "task-coin-change",
+                "title": "Coin Change",
+                "ref": "LC 322",
+                "status": "not-started",
+                "week": 6,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/coin-change/"
+                  }
+                ]
+              },
+              {
+                "id": "task-longest-increasing-subsequence",
+                "title": "Longest Increasing Subsequence",
+                "ref": "LC 300",
+                "status": "not-started",
+                "week": 6,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/longest-increasing-subsequence/"
+                  }
+                ]
+              },
+              {
+                "id": "task-word-break",
+                "title": "Word Break",
+                "ref": "LC 139",
+                "status": "not-started",
+                "week": 6,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/word-break/"
+                  }
+                ]
+              },
+              {
+                "id": "task-decode-ways",
+                "title": "Decode Ways",
+                "ref": "LC 91",
+                "status": "not-started",
+                "week": 6,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/decode-ways/"
+                  }
+                ]
+              },
+              {
+                "id": "task-maximum-product-subarray",
+                "title": "Maximum Product Subarray",
+                "ref": "LC 152",
+                "status": "not-started",
+                "week": 6,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/maximum-product-subarray/"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "module-2-d-dynamic-programming",
+            "title": "2-D dynamic programming",
+            "tasks": [
+              {
+                "id": "task-unique-paths",
+                "title": "Unique Paths",
+                "ref": "LC 62",
+                "status": "not-started",
+                "week": 7,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/unique-paths/"
+                  }
+                ]
+              },
+              {
+                "id": "task-longest-common-subsequence",
+                "title": "Longest Common Subsequence",
+                "ref": "LC 1143",
+                "status": "not-started",
+                "week": 7,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/longest-common-subsequence/"
+                  }
+                ]
+              },
+              {
+                "id": "task-coin-change-ii",
+                "title": "Coin Change II",
+                "ref": "LC 518",
+                "status": "not-started",
+                "week": 7,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/coin-change-ii/"
+                  }
+                ]
+              },
+              {
+                "id": "task-edit-distance",
+                "title": "Edit Distance",
+                "ref": "LC 72",
+                "status": "not-started",
+                "week": 7,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/edit-distance/"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "module-tries",
+            "title": "Tries",
+            "tasks": [
+              {
+                "id": "task-implement-trie-prefix-tree",
+                "title": "Implement Trie (Prefix Tree)",
+                "ref": "LC 208",
+                "status": "not-started",
+                "week": 7,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/implement-trie-prefix-tree/"
+                  }
+                ]
+              },
+              {
+                "id": "task-design-add-and-search-words-data-structure",
+                "title": "Design Add and Search Words Data Structure",
+                "ref": "LC 211",
+                "status": "not-started",
+                "week": 7,
+                "notes": "",
+                "links": [
+                  {
+                    "label": "Problem on LeetCode",
+                    "url": "https://leetcode.com/problems/design-add-and-search-words-data-structure/"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "module-timed-mixed-sets",
+            "title": "Timed mixed sets",
+            "tasks": [
+              {
+                "id": "task-timed-set-1-2-unseen-mediums-in-45-minutes",
+                "title": "Timed set 1: 2 unseen mediums in 45 minutes",
+                "status": "not-started",
+                "week": 8,
+                "notes": "Pick from topics you marked weakest. Talk out loud and write the complexity before running.",
+                "links": []
+              },
+              {
+                "id": "task-timed-set-2-2-unseen-mediums-in-45-minutes",
+                "title": "Timed set 2: 2 unseen mediums in 45 minutes",
+                "status": "not-started",
+                "week": 8,
+                "notes": "Pick from topics you marked weakest. Talk out loud and write the complexity before running.",
+                "links": []
+              },
+              {
+                "id": "task-timed-set-3-2-unseen-mediums-in-45-minutes",
+                "title": "Timed set 3: 2 unseen mediums in 45 minutes",
+                "status": "not-started",
+                "week": 8,
+                "notes": "Pick from topics you marked weakest. Talk out loud and write the complexity before running.",
+                "links": []
+              },
+              {
+                "id": "task-timed-set-4-2-unseen-mediums-in-45-minutes",
+                "title": "Timed set 4: 2 unseen mediums in 45 minutes",
+                "status": "not-started",
+                "week": 8,
+                "notes": "Pick from topics you marked weakest. Talk out loud and write the complexity before running.",
+                "links": []
+              }
+            ]
+          },
+          {
+            "id": "module-weekly-review",
+            "title": "Weekly review",
+            "tasks": [
+              {
+                "id": "task-redo-week-1-misses-without-looking-at-solutions",
+                "title": "Redo week 1 misses without looking at solutions",
+                "status": "not-started",
+                "week": 1,
+                "notes": "Anything you needed the solution for goes on the redo list. Redo two days later.",
+                "links": []
+              },
+              {
+                "id": "task-redo-week-2-misses-without-looking-at-solutions",
+                "title": "Redo week 2 misses without looking at solutions",
+                "status": "not-started",
+                "week": 2,
+                "notes": "Anything you needed the solution for goes on the redo list. Redo two days later.",
+                "links": []
+              },
+              {
+                "id": "task-redo-week-3-misses-without-looking-at-solutions",
+                "title": "Redo week 3 misses without looking at solutions",
+                "status": "not-started",
+                "week": 3,
+                "notes": "Anything you needed the solution for goes on the redo list. Redo two days later.",
+                "links": []
+              },
+              {
+                "id": "task-redo-week-4-misses-without-looking-at-solutions",
+                "title": "Redo week 4 misses without looking at solutions",
+                "status": "not-started",
+                "week": 4,
+                "notes": "Anything you needed the solution for goes on the redo list. Redo two days later.",
+                "links": []
+              },
+              {
+                "id": "task-redo-week-5-misses-without-looking-at-solutions",
+                "title": "Redo week 5 misses without looking at solutions",
+                "status": "not-started",
+                "week": 5,
+                "notes": "Anything you needed the solution for goes on the redo list. Redo two days later.",
+                "links": []
+              },
+              {
+                "id": "task-redo-week-6-misses-without-looking-at-solutions",
+                "title": "Redo week 6 misses without looking at solutions",
+                "status": "not-started",
+                "week": 6,
+                "notes": "Anything you needed the solution for goes on the redo list. Redo two days later.",
+                "links": []
+              },
+              {
+                "id": "task-redo-week-7-misses-without-looking-at-solutions",
+                "title": "Redo week 7 misses without looking at solutions",
+                "status": "not-started",
+                "week": 7,
+                "notes": "Anything you needed the solution for goes on the redo list. Redo two days later.",
+                "links": []
+              },
+              {
+                "id": "task-redo-every-problem-still-on-the-redo-list",
+                "title": "Redo every problem still on the redo list",
+                "status": "not-started",
+                "week": 8,
+                "notes": "",
+                "links": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "track-system-design",
+        "title": "System design",
+        "modules": [
+          {
+            "id": "module-fundamentals",
+            "title": "Fundamentals",
+            "tasks": [
+              {
+                "id": "task-scaling-and-load-balancing",
+                "title": "Scaling and load balancing",
+                "status": "not-started",
+                "week": 1,
+                "notes": "Vertical vs. horizontal, L4 vs. L7, stateless services.",
+                "links": [
+                  {
+                    "label": "System Design Primer",
+                    "url": "https://github.com/donnemartin/system-design-primer"
+                  }
+                ]
+              },
+              {
+                "id": "task-caching-strategies",
+                "title": "Caching strategies",
+                "status": "not-started",
+                "week": 1,
+                "notes": "Cache-aside, write-through, TTLs, invalidation, CDN.",
+                "links": []
+              },
+              {
+                "id": "task-sql-vs-nosql-and-indexing",
+                "title": "SQL vs. NoSQL and indexing",
+                "status": "not-started",
+                "week": 1,
+                "notes": "When each fits, B-tree indexes, query plans.",
+                "links": []
+              },
+              {
+                "id": "task-cap-theorem-and-consistency-models",
+                "title": "CAP theorem and consistency models",
+                "status": "not-started",
+                "week": 1,
+                "notes": "",
+                "links": []
+              }
+            ]
+          },
+          {
+            "id": "module-apis-and-traffic",
+            "title": "APIs and traffic",
+            "tasks": [
+              {
+                "id": "task-rest-api-design-resources-pagination-versioning",
+                "title": "REST API design: resources, pagination, versioning",
+                "status": "not-started",
+                "week": 2,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-rate-limiting-algorithms",
+                "title": "Rate limiting algorithms",
+                "status": "not-started",
+                "week": 2,
+                "notes": "Token bucket, leaky bucket, sliding window. Feeds this week's project.",
+                "links": []
+              },
+              {
+                "id": "task-authentication-sessions-vs-jwt-oauth-flow",
+                "title": "Authentication: sessions vs. JWT, OAuth flow",
+                "status": "not-started",
+                "week": 2,
+                "notes": "",
+                "links": []
+              }
+            ]
+          },
+          {
+            "id": "module-data-at-scale",
+            "title": "Data at scale",
+            "tasks": [
+              {
+                "id": "task-replication-and-sharding",
+                "title": "Replication and sharding",
+                "status": "not-started",
+                "week": 4,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-availability-failover-health-checks-redundancy",
+                "title": "Availability: failover, health checks, redundancy",
+                "status": "not-started",
+                "week": 4,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-observability-logs-metrics-traces",
+                "title": "Observability: logs, metrics, traces",
+                "status": "not-started",
+                "week": 4,
+                "notes": "",
+                "links": []
+              }
+            ]
+          },
+          {
+            "id": "module-async-and-real-time",
+            "title": "Async and real-time",
+            "tasks": [
+              {
+                "id": "task-message-queues-and-async-processing",
+                "title": "Message queues and async processing",
+                "status": "not-started",
+                "week": 5,
+                "notes": "At-least-once delivery, consumer groups, back pressure.",
+                "links": []
+              },
+              {
+                "id": "task-idempotency-retries-and-dead-letter-queues",
+                "title": "Idempotency, retries, and dead-letter queues",
+                "status": "not-started",
+                "week": 5,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-websockets-vs-sse-vs-polling",
+                "title": "WebSockets vs. SSE vs. polling",
+                "status": "not-started",
+                "week": 6,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-fan-out-strategies-for-feeds-and-notifications",
+                "title": "Fan-out strategies for feeds and notifications",
+                "status": "not-started",
+                "week": 6,
+                "notes": "",
+                "links": []
+              }
+            ]
+          },
+          {
+            "id": "module-practice-designs",
+            "title": "Practice designs",
+            "tasks": [
+              {
+                "id": "task-design-a-url-shortener",
+                "title": "Design a URL shortener",
+                "status": "not-started",
+                "week": 3,
+                "notes": "45 minutes on paper, then build it this week.",
+                "links": []
+              },
+              {
+                "id": "task-design-a-rate-limiter-service",
+                "title": "Design a rate limiter service",
+                "status": "not-started",
+                "week": 4,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-design-a-notification-system",
+                "title": "Design a notification system",
+                "status": "not-started",
+                "week": 5,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-design-a-chat-app",
+                "title": "Design a chat app",
+                "status": "not-started",
+                "week": 6,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-timed-design-a-news-feed",
+                "title": "Timed: design a news feed",
+                "status": "not-started",
+                "week": 7,
+                "notes": "45 minutes, out loud, recorded if possible.",
+                "links": []
+              },
+              {
+                "id": "task-timed-design-file-storage-dropbox-style",
+                "title": "Timed: design file storage (Dropbox-style)",
+                "status": "not-started",
+                "week": 7,
+                "notes": "45 minutes.",
+                "links": []
+              },
+              {
+                "id": "task-timed-design-a-ticket-booking-system",
+                "title": "Timed: design a ticket booking system",
+                "status": "not-started",
+                "week": 8,
+                "notes": "45 minutes. Focus on concurrency and double-booking.",
+                "links": []
+              },
+              {
+                "id": "task-timed-design-a-web-crawler",
+                "title": "Timed: design a web crawler",
+                "status": "not-started",
+                "week": 8,
+                "notes": "45 minutes.",
+                "links": []
+              }
+            ]
+          },
+          {
+            "id": "module-design-answer-framework",
+            "title": "Design answer framework",
+            "tasks": [
+              {
+                "id": "task-write-a-one-page-template-requirements-estimates-api-da",
+                "title": "Write a one-page template: requirements, estimates, API, data model, high-level design, deep dives, trade-offs",
+                "status": "not-started",
+                "week": 3,
+                "notes": "Use it for every practice design from here on.",
+                "links": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "track-full-stack",
+        "title": "Full stack",
+        "modules": [
+          {
+            "id": "module-fundamentals-refresh",
+            "title": "Fundamentals refresh",
+            "tasks": [
+              {
+                "id": "task-javascript-closures-event-loop-promises-async-await",
+                "title": "JavaScript: closures, event loop, promises, async/await",
+                "status": "not-started",
+                "week": 1,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-typescript-generics-unions-narrowing-utility-types",
+                "title": "TypeScript: generics, unions, narrowing, utility types",
+                "status": "not-started",
+                "week": 2,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-react-rendering-reconciliation-hooks-rules-memoization",
+                "title": "React: rendering, reconciliation, hooks rules, memoization",
+                "status": "not-started",
+                "week": 2,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-sql-joins-indexes-transactions-isolation-levels",
+                "title": "SQL: joins, indexes, transactions, isolation levels",
+                "status": "not-started",
+                "week": 5,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-http-caching-headers-cors-cookies-vs-tokens",
+                "title": "HTTP: caching headers, CORS, cookies vs. tokens",
+                "status": "not-started",
+                "week": 6,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-web-security-basics-xss-csrf-sql-injection",
+                "title": "Web security basics: XSS, CSRF, SQL injection",
+                "status": "not-started",
+                "week": 6,
+                "notes": "",
+                "links": []
+              }
+            ]
+          },
+          {
+            "id": "module-project-1-lru-cache-library",
+            "title": "Project 1: LRU cache library",
+            "tasks": [
+              {
+                "id": "task-implement-with-a-map-plus-doubly-linked-list-in-typescr",
+                "title": "Implement with a Map plus doubly linked list in TypeScript",
+                "status": "not-started",
+                "week": 1,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-jest-tests-covering-eviction-order-and-edge-cases",
+                "title": "Jest tests covering eviction order and edge cases",
+                "status": "not-started",
+                "week": 1,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-readme-with-api-and-complexity-notes",
+                "title": "README with API and complexity notes",
+                "status": "not-started",
+                "week": 1,
+                "notes": "",
+                "links": []
+              }
+            ]
+          },
+          {
+            "id": "module-project-2-rate-limiter-middleware",
+            "title": "Project 2: Rate limiter middleware",
+            "tasks": [
+              {
+                "id": "task-token-bucket-middleware-for-fastapi-or-express",
+                "title": "Token bucket middleware for FastAPI or Express",
+                "status": "not-started",
+                "week": 2,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-per-client-keys-and-429-responses-with-retry-after",
+                "title": "Per-client keys and 429 responses with Retry-After",
+                "status": "not-started",
+                "week": 2,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-tests-and-readme",
+                "title": "Tests and README",
+                "status": "not-started",
+                "week": 2,
+                "notes": "",
+                "links": []
+              }
+            ]
+          },
+          {
+            "id": "module-project-3-url-shortener",
+            "title": "Project 3: URL shortener",
+            "tasks": [
+              {
+                "id": "task-postgres-schema-and-short-code-generation",
+                "title": "Postgres schema and short-code generation",
+                "status": "not-started",
+                "week": 3,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-redirect-endpoint-with-a-redis-cache",
+                "title": "Redirect endpoint with a Redis cache",
+                "status": "not-started",
+                "week": 3,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-small-react-or-next-js-frontend",
+                "title": "Small React or Next.js frontend",
+                "status": "not-started",
+                "week": 3,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-readme-with-an-architecture-diagram",
+                "title": "README with an architecture diagram",
+                "status": "not-started",
+                "week": 3,
+                "notes": "",
+                "links": []
+              }
+            ]
+          },
+          {
+            "id": "module-project-4-job-queue",
+            "title": "Project 4: Job queue",
+            "tasks": [
+              {
+                "id": "task-enqueue-api-and-worker-bullmq-with-redis-or-postgres-ba",
+                "title": "Enqueue API and worker (BullMQ with Redis, or Postgres-backed)",
+                "status": "not-started",
+                "week": 5,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-retries-with-backoff-and-a-dead-letter-queue",
+                "title": "Retries with backoff and a dead-letter queue",
+                "status": "not-started",
+                "week": 5,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-job-status-endpoint-and-readme",
+                "title": "Job status endpoint and README",
+                "status": "not-started",
+                "week": 5,
+                "notes": "",
+                "links": []
+              }
+            ]
+          },
+          {
+            "id": "module-project-5-real-time-feature",
+            "title": "Project 5: Real-time feature",
+            "tasks": [
+              {
+                "id": "task-websocket-chat-or-live-dashboard-in-next-js",
+                "title": "WebSocket chat or live dashboard in Next.js",
+                "status": "not-started",
+                "week": 6,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-reconnect-handling-and-presence",
+                "title": "Reconnect handling and presence",
+                "status": "not-started",
+                "week": 6,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-deploy-it-and-write-the-readme",
+                "title": "Deploy it and write the README",
+                "status": "not-started",
+                "week": 6,
+                "notes": "",
+                "links": []
+              }
+            ]
+          },
+          {
+            "id": "module-project-6-production-hardening",
+            "title": "Project 6: Production hardening",
+            "tasks": [
+              {
+                "id": "task-structured-logging-and-request-ids-on-the-url-shortener",
+                "title": "Structured logging and request IDs on the URL shortener",
+                "status": "not-started",
+                "week": 7,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-health-check-and-metrics-endpoints",
+                "title": "Health check and metrics endpoints",
+                "status": "not-started",
+                "week": 7,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-load-test-it-and-note-the-bottleneck",
+                "title": "Load test it and note the bottleneck",
+                "status": "not-started",
+                "week": 7,
+                "notes": "",
+                "links": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "track-devops",
+        "title": "DevOps",
+        "modules": [
+          {
+            "id": "module-containers",
+            "title": "Containers",
+            "tasks": [
+              {
+                "id": "task-multi-stage-dockerfile-for-the-url-shortener",
+                "title": "Multi-stage Dockerfile for the URL shortener",
+                "status": "not-started",
+                "week": 3,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-docker-compose-for-app-postgres-and-redis-with-health-c",
+                "title": "Docker Compose for app, Postgres, and Redis with health checks",
+                "status": "not-started",
+                "week": 3,
+                "notes": "",
+                "links": []
+              }
+            ]
+          },
+          {
+            "id": "module-ci-cd",
+            "title": "CI/CD",
+            "tasks": [
+              {
+                "id": "task-github-actions-lint-test-and-build-on-every-pull-reques",
+                "title": "GitHub Actions: lint, test, and build on every pull request",
+                "status": "not-started",
+                "week": 4,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-build-and-push-the-image-to-a-registry-ecr-or-ghcr",
+                "title": "Build and push the image to a registry (ECR or GHCR)",
+                "status": "not-started",
+                "week": 4,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-deploy-automatically-on-merge-to-main",
+                "title": "Deploy automatically on merge to main",
+                "status": "not-started",
+                "week": 4,
+                "notes": "",
+                "links": []
+              }
+            ]
+          },
+          {
+            "id": "module-infrastructure-as-code",
+            "title": "Infrastructure as code",
+            "tasks": [
+              {
+                "id": "task-terraform-basics-providers-state-plan-and-apply",
+                "title": "Terraform basics: providers, state, plan and apply",
+                "status": "not-started",
+                "week": 4,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-terraform-the-url-shortener-on-aws-ecs-fargate-or-ec2-p",
+                "title": "Terraform the URL shortener on AWS (ECS Fargate or EC2, plus RDS)",
+                "status": "not-started",
+                "week": 4,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-secrets-and-environment-configuration",
+                "title": "Secrets and environment configuration",
+                "status": "not-started",
+                "week": 4,
+                "notes": "",
+                "links": []
+              }
+            ]
+          },
+          {
+            "id": "module-monitoring",
+            "title": "Monitoring",
+            "tasks": [
+              {
+                "id": "task-cloudwatch-logs-and-one-alarm-on-the-deployed-app",
+                "title": "CloudWatch logs and one alarm on the deployed app",
+                "status": "not-started",
+                "week": 7,
+                "notes": "",
+                "links": []
+              }
+            ]
+          },
+          {
+            "id": "module-kubernetes-optional",
+            "title": "Kubernetes (optional)",
+            "tasks": [
+              {
+                "id": "task-core-concepts-pods-deployments-services-ingress",
+                "title": "Core concepts: pods, deployments, services, ingress",
+                "status": "not-started",
+                "week": 6,
+                "notes": "Only if you are targeting DevOps roles. Skip otherwise.",
+                "links": []
+              },
+              {
+                "id": "task-deploy-the-url-shortener-to-a-local-cluster-kind-or-min",
+                "title": "Deploy the URL shortener to a local cluster (kind or minikube)",
+                "status": "not-started",
+                "week": 7,
+                "notes": "Optional.",
+                "links": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "track-interview-prep",
+        "title": "Interview prep",
+        "modules": [
+          {
+            "id": "module-behavioral-stories",
+            "title": "Behavioral stories",
+            "tasks": [
+              {
+                "id": "task-90-second-tell-me-about-yourself-pitch",
+                "title": "90-second \"tell me about yourself\" pitch",
+                "status": "not-started",
+                "week": 2,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-star-story-leading-the-5-person-capstone-team",
+                "title": "STAR story: leading the 5-person capstone team",
+                "status": "not-started",
+                "week": 2,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-star-story-a-technical-decision-on-the-axis-contract",
+                "title": "STAR story: a technical decision on the Axis contract",
+                "status": "not-started",
+                "week": 3,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-star-story-refactoring-the-letheia-mvp",
+                "title": "STAR story: refactoring the Letheia MVP",
+                "status": "not-started",
+                "week": 3,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-star-story-a-conflict-failure-or-missed-deadline",
+                "title": "STAR story: a conflict, failure, or missed deadline",
+                "status": "not-started",
+                "week": 3,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-prepare-5-questions-to-ask-interviewers",
+                "title": "Prepare 5 questions to ask interviewers",
+                "status": "not-started",
+                "week": 5,
+                "notes": "",
+                "links": []
+              }
+            ]
+          },
+          {
+            "id": "module-resume-and-profiles",
+            "title": "Resume and profiles",
+            "tasks": [
+              {
+                "id": "task-resume-variants-for-frontend-full-stack-and-devops-role",
+                "title": "Resume variants for frontend, full stack, and DevOps roles",
+                "status": "not-started",
+                "week": 3,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-update-linkedin-and-pin-the-best-github-repos",
+                "title": "Update LinkedIn and pin the best GitHub repos",
+                "status": "not-started",
+                "week": 3,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-add-the-new-projects-to-resume-and-portfolio",
+                "title": "Add the new projects to resume and portfolio",
+                "status": "not-started",
+                "week": 7,
+                "notes": "",
+                "links": []
+              }
+            ]
+          },
+          {
+            "id": "module-applications",
+            "title": "Applications",
+            "tasks": [
+              {
+                "id": "task-build-a-target-list-of-30-companies",
+                "title": "Build a target list of 30 companies",
+                "status": "not-started",
+                "week": 4,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-week-4-send-10-applications",
+                "title": "Week 4: send 10 applications",
+                "status": "not-started",
+                "week": 4,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-week-5-send-10-applications",
+                "title": "Week 5: send 10 applications",
+                "status": "not-started",
+                "week": 5,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-week-6-send-10-applications",
+                "title": "Week 6: send 10 applications",
+                "status": "not-started",
+                "week": 6,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-week-7-send-10-applications",
+                "title": "Week 7: send 10 applications",
+                "status": "not-started",
+                "week": 7,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-week-8-send-10-applications",
+                "title": "Week 8: send 10 applications",
+                "status": "not-started",
+                "week": 8,
+                "notes": "",
+                "links": []
+              }
+            ]
+          },
+          {
+            "id": "module-mock-interviews",
+            "title": "Mock interviews",
+            "tasks": [
+              {
+                "id": "task-mock-coding-interview-1",
+                "title": "Mock coding interview 1",
+                "status": "not-started",
+                "week": 5,
+                "notes": "With a peer or a mock-interview platform.",
+                "links": []
+              },
+              {
+                "id": "task-mock-coding-interview-2",
+                "title": "Mock coding interview 2",
+                "status": "not-started",
+                "week": 6,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-mock-system-design-interview",
+                "title": "Mock system design interview",
+                "status": "not-started",
+                "week": 7,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-mock-behavioral-interview",
+                "title": "Mock behavioral interview",
+                "status": "not-started",
+                "week": 8,
+                "notes": "",
+                "links": []
+              },
+              {
+                "id": "task-full-mock-loop-coding-design-behavioral-in-one-sitting",
+                "title": "Full mock loop: coding, design, behavioral in one sitting",
+                "status": "not-started",
+                "week": 8,
+                "notes": "",
+                "links": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

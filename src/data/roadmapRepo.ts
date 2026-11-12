@@ -1,6 +1,6 @@
 import type { Roadmap } from "../types";
 import { supabase } from "./supabase"
-import seed from "./data.json"
+import seed from "./roadmaps.json"
 
 export async function loadRoadmaps(): Promise<Roadmap[]> {
     const { data, error } = await supabase
