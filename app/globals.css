@@ -15,9 +15,15 @@
   --color-brand: var(--brand);
   --color-brand-ink: var(--brand-ink);
   --color-brand-soft: var(--brand-soft);
+  --color-brand-deep: var(--brand-deep);
   --color-sun: var(--sun);
+  --color-sun-soft: var(--sun-soft);
+  --color-sun-ink: var(--sun-ink);
+  --color-coral: var(--coral);
   --color-coral-soft: var(--coral-soft);
   --color-coral-ink: var(--coral-ink);
+  --color-mint-soft: var(--mint-soft);
+  --color-mint-ink: var(--mint-ink);
 
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -70,9 +76,15 @@
   --brand: #5b3df5;
   --brand-ink: #3d22d6;
   --brand-soft: #ece8ff;
+  --brand-deep: #4a2fe0;
   --sun: #ffd43b;
+  --sun-soft: #fff1bf;
+  --sun-ink: #5a4500;
+  --coral: #ff7a45;
   --coral-soft: #ffe3d6;
   --coral-ink: #8a2e0b;
+  --mint-soft: #d8f5e4;
+  --mint-ink: #1e6b3f;
 
   --background: oklch(96.7% 0.003 264.542);
   --foreground: oklch(0.145 0 0);

@@ -8,7 +8,7 @@ import InfoBubble from "./InfoBubble"
 const Navbar = () => {
     return (
         <header className="sticky top-0 z-40 w-full border-b border-slate-200/80 bg-white/85 backdrop-blur supports-backdrop-filter:bg-white/70">
-            <nav aria-label="Main" className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:gap-8 sm:px-6">
+            <nav aria-label="Main" className="mx-auto flex h-16 items-center gap-4 px-4 sm:gap-8 sm:px-20">
                 {/* Logo */}
                 <Link
                     href="/"
@@ -18,19 +18,19 @@ const Navbar = () => {
                     {/* Full logo on tablet and up, icon only on phones */}
                     <Image
                         src="/logo-full.svg"
-                        alt=""
+                        alt="logo"
                         width={162}
-                        height={36}
+                        height={15}
                         priority
                         className="hidden h-9 w-auto sm:block"
                     />
                     <Image
                         src="/logo-mark.svg"
-                        alt=""
+                        alt="logo"
                         width={36}
                         height={36}
                         priority
-                        className="h-9 w-9 sm:hidden"
+                        className="size-9 sm:hidden"
                     />
                 </Link>
 
@@ -45,13 +45,22 @@ const Navbar = () => {
                         <InfoBubble
                             text="12-day streak"
                             icon={Flame}
-                            color="bg-amber-100"
-                            textColor="text-amber-900"
+                            color="bg-coral-soft"
+                            textColor="text-coral-ink"
                             classNames="hidden h-10 px-3.5 md:inline-flex"
                         />
 
                         <div className="ml-1 flex h-10 items-center">
-                            <UserButton appearance={{ elements: { avatarBox: "h-9 w-9" } }} />
+                            <UserButton
+                                appearance={{
+                                    elements: {
+                                        avatarBox: {
+                                            width: "37px",
+                                            height: "37px",
+                                        }
+                                    }
+                                }}
+                            />
                         </div>
                     </Show>
 
