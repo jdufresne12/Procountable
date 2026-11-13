@@ -29,3 +29,23 @@ export function formatMinutes(total: number) {
     if (m === 0) return `${h}h`
     return `${h}h ${m}m`
 }
+
+// Plan dates are stored as plain "YYYY-MM-DD" strings. Formatting them in UTC
+// keeps the day from shifting depending on where the server runs.
+const isoToDate = (iso: string) => new Date(`${iso}T00:00:00Z`)
+
+/** "2026-12-23" → "Dec 23" */
+export function formatShortDate(iso: string) {
+    return isoToDate(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" })
+}
+
+/** "2026-11-12" → "Thu, Nov 12" */
+export function formatDayLabel(iso: string) {
+    return isoToDate(iso).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", timeZone: "UTC" })
+}
+
+/** Whole weeks between two ISO dates, at least 1 */
+export function weeksBetween(startIso: string, endIso: string) {
+    const days = (isoToDate(endIso).getTime() - isoToDate(startIso).getTime()) / 86_400_000
+    return Math.max(1, Math.round(days / 7))
+}
