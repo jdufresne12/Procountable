@@ -1,0 +1,1700 @@
+{
+  "type": "base",
+  "version": "9",
+  "dialect": "postgres",
+  "id": "c067d629-407c-4ee5-871a-a73578534594",
+  "prevIds": [
+    "00000000-0000-0000-0000-000000000000"
+  ],
+  "footprints": [
+    {
+      "statementType": "create_enum",
+      "statementTarget": [
+        "enum",
+        "public",
+        "mastery_outcome"
+      ],
+      "writes": [
+        "s|enum|public.mastery_outcome",
+        "n|enum|public.mastery_outcome",
+        "e|enum|public.mastery_outcome",
+        "n|type|public.mastery_outcome"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_enum",
+      "statementTarget": [
+        "enum",
+        "public",
+        "plan_color"
+      ],
+      "writes": [
+        "s|enum|public.plan_color",
+        "n|enum|public.plan_color",
+        "e|enum|public.plan_color",
+        "n|type|public.plan_color"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_enum",
+      "statementTarget": [
+        "enum",
+        "public",
+        "plan_lifecycle"
+      ],
+      "writes": [
+        "s|enum|public.plan_lifecycle",
+        "n|enum|public.plan_lifecycle",
+        "e|enum|public.plan_lifecycle",
+        "n|type|public.plan_lifecycle"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_enum",
+      "statementTarget": [
+        "enum",
+        "public",
+        "plan_schedule"
+      ],
+      "writes": [
+        "s|enum|public.plan_schedule",
+        "n|enum|public.plan_schedule",
+        "e|enum|public.plan_schedule",
+        "n|type|public.plan_schedule"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_enum",
+      "statementTarget": [
+        "enum",
+        "public",
+        "section_status"
+      ],
+      "writes": [
+        "s|enum|public.section_status",
+        "n|enum|public.section_status",
+        "e|enum|public.section_status",
+        "n|type|public.section_status"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_enum",
+      "statementTarget": [
+        "enum",
+        "public",
+        "section_step"
+      ],
+      "writes": [
+        "s|enum|public.section_step",
+        "n|enum|public.section_step",
+        "e|enum|public.section_step",
+        "n|type|public.section_step"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "mastery_checks"
+      ],
+      "writes": [
+        "s|tbl|public.mastery_checks",
+        "n|tbl|public.mastery_checks",
+        "e|tbl|public.mastery_checks",
+        "n|rel|public.mastery_checks",
+        "n|type|public.mastery_checks",
+        "n|rel|public.mastery_checks_pkey"
+      ],
+      "reads": [
+        "n|sch|public",
+        "n|enum|public.mastery_outcome"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "plans"
+      ],
+      "writes": [
+        "s|tbl|public.plans",
+        "n|tbl|public.plans",
+        "e|tbl|public.plans",
+        "n|rel|public.plans",
+        "n|type|public.plans",
+        "n|rel|public.plans_pkey"
+      ],
+      "reads": [
+        "n|sch|public",
+        "n|enum|public.plan_color",
+        "n|enum|public.plan_lifecycle",
+        "n|enum|public.plan_schedule"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "quiz_attempts"
+      ],
+      "writes": [
+        "s|tbl|public.quiz_attempts",
+        "n|tbl|public.quiz_attempts",
+        "e|tbl|public.quiz_attempts",
+        "n|rel|public.quiz_attempts",
+        "n|type|public.quiz_attempts",
+        "n|rel|public.quiz_attempts_pkey"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "redo_items"
+      ],
+      "writes": [
+        "s|tbl|public.redo_items",
+        "n|tbl|public.redo_items",
+        "e|tbl|public.redo_items",
+        "n|rel|public.redo_items",
+        "n|type|public.redo_items",
+        "n|rel|public.redo_items_pkey"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "schedule_entries"
+      ],
+      "writes": [
+        "s|tbl|public.schedule_entries",
+        "n|tbl|public.schedule_entries",
+        "e|tbl|public.schedule_entries",
+        "n|rel|public.schedule_entries",
+        "n|type|public.schedule_entries",
+        "n|rel|public.schedule_entries_pkey"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "create_table",
+      "statementTarget": [
+        "table",
+        "public",
+        "sections"
+      ],
+      "writes": [
+        "s|tbl|public.sections",
+        "n|tbl|public.sections",
+        "e|tbl|public.sections",
+        "n|rel|public.sections",
+        "n|type|public.sections",
+        "n|rel|public.sections_pkey",
+        "n|rel|public.sections_plan_id_number_unique"
+      ],
+      "reads": [
+        "n|sch|public",
+        "n|enum|public.section_status",
+        "n|enum|public.section_step"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "plans",
+        "plans_user_id_index"
+      ],
+      "writes": [
+        "s|idx|public.plans_user_id_index",
+        "n|idx|public.plans_user_id_index",
+        "e|idx|public.plans_user_id_index",
+        "n|rel|public.plans_user_id_index"
+      ],
+      "reads": [
+        "n|tbl|public.plans",
+        "n|sch|public",
+        "n|col|public.plans.user_id"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "quiz_attempts",
+        "quiz_attempts_section_id_user_id_index"
+      ],
+      "writes": [
+        "s|idx|public.quiz_attempts_section_id_user_id_index",
+        "n|idx|public.quiz_attempts_section_id_user_id_index",
+        "e|idx|public.quiz_attempts_section_id_user_id_index",
+        "n|rel|public.quiz_attempts_section_id_user_id_index"
+      ],
+      "reads": [
+        "n|tbl|public.quiz_attempts",
+        "n|sch|public",
+        "n|col|public.quiz_attempts.section_id",
+        "n|col|public.quiz_attempts.user_id"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "redo_items",
+        "redo_items_user_id_next_review_on_index"
+      ],
+      "writes": [
+        "s|idx|public.redo_items_user_id_next_review_on_index",
+        "n|idx|public.redo_items_user_id_next_review_on_index",
+        "e|idx|public.redo_items_user_id_next_review_on_index",
+        "n|rel|public.redo_items_user_id_next_review_on_index"
+      ],
+      "reads": [
+        "n|tbl|public.redo_items",
+        "n|sch|public",
+        "n|col|public.redo_items.user_id",
+        "n|col|public.redo_items.next_review_on"
+      ]
+    },
+    {
+      "statementType": "create_index",
+      "statementTarget": [
+        "index",
+        "public",
+        "schedule_entries",
+        "schedule_entries_user_id_date_index"
+      ],
+      "writes": [
+        "s|idx|public.schedule_entries_user_id_date_index",
+        "n|idx|public.schedule_entries_user_id_date_index",
+        "e|idx|public.schedule_entries_user_id_date_index",
+        "n|rel|public.schedule_entries_user_id_date_index"
+      ],
+      "reads": [
+        "n|tbl|public.schedule_entries",
+        "n|sch|public",
+        "n|col|public.schedule_entries.user_id",
+        "n|col|public.schedule_entries.date"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "mastery_checks"
+      ],
+      "writes": [
+        "s|fk|public.mastery_checks.mastery_checks_section_id_sections_id_fkey",
+        "n|fk|public.mastery_checks.mastery_checks_section_id_sections_id_fkey",
+        "e|fk|public.mastery_checks.mastery_checks_section_id_sections_id_fkey",
+        "n|con|public.mastery_checks.mastery_checks_section_id_sections_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.mastery_checks",
+        "n|sch|public",
+        "n|tbl|public.sections",
+        "n|sch|public",
+        "n|col|public.mastery_checks.section_id",
+        "n|col|public.sections.id",
+        "e|uniqueness|public.sections.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "quiz_attempts"
+      ],
+      "writes": [
+        "s|fk|public.quiz_attempts.quiz_attempts_section_id_sections_id_fkey",
+        "n|fk|public.quiz_attempts.quiz_attempts_section_id_sections_id_fkey",
+        "e|fk|public.quiz_attempts.quiz_attempts_section_id_sections_id_fkey",
+        "n|con|public.quiz_attempts.quiz_attempts_section_id_sections_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.quiz_attempts",
+        "n|sch|public",
+        "n|tbl|public.sections",
+        "n|sch|public",
+        "n|col|public.quiz_attempts.section_id",
+        "n|col|public.sections.id",
+        "e|uniqueness|public.sections.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "redo_items"
+      ],
+      "writes": [
+        "s|fk|public.redo_items.redo_items_plan_id_plans_id_fkey",
+        "n|fk|public.redo_items.redo_items_plan_id_plans_id_fkey",
+        "e|fk|public.redo_items.redo_items_plan_id_plans_id_fkey",
+        "n|con|public.redo_items.redo_items_plan_id_plans_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.redo_items",
+        "n|sch|public",
+        "n|tbl|public.plans",
+        "n|sch|public",
+        "n|col|public.redo_items.plan_id",
+        "n|col|public.plans.id",
+        "e|uniqueness|public.plans.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "redo_items"
+      ],
+      "writes": [
+        "s|fk|public.redo_items.redo_items_section_id_sections_id_fkey",
+        "n|fk|public.redo_items.redo_items_section_id_sections_id_fkey",
+        "e|fk|public.redo_items.redo_items_section_id_sections_id_fkey",
+        "n|con|public.redo_items.redo_items_section_id_sections_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.redo_items",
+        "n|sch|public",
+        "n|tbl|public.sections",
+        "n|sch|public",
+        "n|col|public.redo_items.section_id",
+        "n|col|public.sections.id",
+        "e|uniqueness|public.sections.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "schedule_entries"
+      ],
+      "writes": [
+        "s|fk|public.schedule_entries.schedule_entries_plan_id_plans_id_fkey",
+        "n|fk|public.schedule_entries.schedule_entries_plan_id_plans_id_fkey",
+        "e|fk|public.schedule_entries.schedule_entries_plan_id_plans_id_fkey",
+        "n|con|public.schedule_entries.schedule_entries_plan_id_plans_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.schedule_entries",
+        "n|sch|public",
+        "n|tbl|public.plans",
+        "n|sch|public",
+        "n|col|public.schedule_entries.plan_id",
+        "n|col|public.plans.id",
+        "e|uniqueness|public.plans.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "schedule_entries"
+      ],
+      "writes": [
+        "s|fk|public.schedule_entries.schedule_entries_section_id_sections_id_fkey",
+        "n|fk|public.schedule_entries.schedule_entries_section_id_sections_id_fkey",
+        "e|fk|public.schedule_entries.schedule_entries_section_id_sections_id_fkey",
+        "n|con|public.schedule_entries.schedule_entries_section_id_sections_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.schedule_entries",
+        "n|sch|public",
+        "n|tbl|public.sections",
+        "n|sch|public",
+        "n|col|public.schedule_entries.section_id",
+        "n|col|public.sections.id",
+        "e|uniqueness|public.sections.id"
+      ]
+    },
+    {
+      "statementType": "create_fk",
+      "statementTarget": [
+        "table",
+        "public",
+        "sections"
+      ],
+      "writes": [
+        "s|fk|public.sections.sections_plan_id_plans_id_fkey",
+        "n|fk|public.sections.sections_plan_id_plans_id_fkey",
+        "e|fk|public.sections.sections_plan_id_plans_id_fkey",
+        "n|con|public.sections.sections_plan_id_plans_id_fkey"
+      ],
+      "reads": [
+        "n|tbl|public.sections",
+        "n|sch|public",
+        "n|tbl|public.plans",
+        "n|sch|public",
+        "n|col|public.sections.plan_id",
+        "n|col|public.plans.id",
+        "e|uniqueness|public.plans.id"
+      ]
+    }
+  ],
+  "ddl": [
+    {
+      "schema": "public",
+      "name": "mastery_checks",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "plans",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "quiz_attempts",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "redo_items",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "schedule_entries",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "sections",
+      "isRlsEnabled": false,
+      "entityType": "tables"
+    },
+    {
+      "schema": "public",
+      "name": "mastery_outcome",
+      "values": [
+        "pass",
+        "pass-with-gaps",
+        "retry"
+      ],
+      "entityType": "enums"
+    },
+    {
+      "schema": "public",
+      "name": "plan_color",
+      "values": [
+        "violet",
+        "sun",
+        "coral"
+      ],
+      "entityType": "enums"
+    },
+    {
+      "schema": "public",
+      "name": "plan_lifecycle",
+      "values": [
+        "active",
+        "paused",
+        "completed"
+      ],
+      "entityType": "enums"
+    },
+    {
+      "schema": "public",
+      "name": "plan_schedule",
+      "values": [
+        "on-track",
+        "behind"
+      ],
+      "entityType": "enums"
+    },
+    {
+      "schema": "public",
+      "name": "section_status",
+      "values": [
+        "done",
+        "current",
+        "locked"
+      ],
+      "entityType": "enums"
+    },
+    {
+      "schema": "public",
+      "name": "section_step",
+      "values": [
+        "learn",
+        "practice",
+        "check"
+      ],
+      "entityType": "enums"
+    },
+    {
+      "schema": "public",
+      "table": "mastery_checks",
+      "name": "id",
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": {
+        "type": "always",
+        "name": "mastery_checks_id_seq",
+        "increment": "1",
+        "startWith": "1",
+        "minValue": "1",
+        "maxValue": "2147483647",
+        "cache": 1,
+        "cycle": false
+      },
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "mastery_checks",
+      "name": "user_id",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "mastery_checks",
+      "name": "section_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "mastery_checks",
+      "name": "outcome",
+      "type": "mastery_outcome",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "mastery_checks",
+      "name": "rubric",
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "mastery_checks",
+      "name": "tran_script",
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "mastery_checks",
+      "name": "taken_on",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "plans",
+      "name": "id",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "plans",
+      "name": "user_id",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "plans",
+      "name": "name",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "plans",
+      "name": "color",
+      "type": "plan_color",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'violet'",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "plans",
+      "name": "lifecycle",
+      "type": "plan_lifecycle",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'active'",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "plans",
+      "name": "schedule",
+      "type": "plan_schedule",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'on-track'",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "plans",
+      "name": "days_behind",
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "0",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "plans",
+      "name": "goal",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "plans",
+      "name": "start_date",
+      "type": "date",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "plans",
+      "name": "end_date",
+      "type": "date",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "plans",
+      "name": "hours_per_week",
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "plans",
+      "name": "paused_on",
+      "type": "date",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "plans",
+      "name": "completed_on",
+      "type": "date",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "plans",
+      "name": "rules",
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "plans",
+      "name": "created_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "plans",
+      "name": "updated_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "quiz_attempts",
+      "name": "id",
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": {
+        "type": "always",
+        "name": "quiz_attempts_id_seq",
+        "increment": "1",
+        "startWith": "1",
+        "minValue": "1",
+        "maxValue": "2147483647",
+        "cache": 1,
+        "cycle": false
+      },
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "quiz_attempts",
+      "name": "user_id",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "quiz_attempts",
+      "name": "section_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "quiz_attempts",
+      "name": "question_id",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "quiz_attempts",
+      "name": "choice_id",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "quiz_attempts",
+      "name": "correct",
+      "type": "boolean",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "quiz_attempts",
+      "name": "created_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "redo_items",
+      "name": "id",
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": {
+        "type": "always",
+        "name": "redo_items_id_seq",
+        "increment": "1",
+        "startWith": "1",
+        "minValue": "1",
+        "maxValue": "2147483647",
+        "cache": 1,
+        "cycle": false
+      },
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "redo_items",
+      "name": "user_id",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "redo_items",
+      "name": "plan_id",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "redo_items",
+      "name": "section_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "redo_items",
+      "name": "concept",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "redo_items",
+      "name": "prompt",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "redo_items",
+      "name": "next_review_on",
+      "type": "date",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "redo_items",
+      "name": "resolved_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "redo_items",
+      "name": "created_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "schedule_entries",
+      "name": "id",
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": {
+        "type": "always",
+        "name": "schedule_entries_id_seq",
+        "increment": "1",
+        "startWith": "1",
+        "minValue": "1",
+        "maxValue": "2147483647",
+        "cache": 1,
+        "cycle": false
+      },
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "schedule_entries",
+      "name": "user_id",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "schedule_entries",
+      "name": "plan_id",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "schedule_entries",
+      "name": "section_id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "schedule_entries",
+      "name": "date",
+      "type": "date",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "schedule_entries",
+      "name": "minutes",
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "schedule_entries",
+      "name": "done",
+      "type": "boolean",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "false",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "sections",
+      "name": "id",
+      "type": "uuid",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "gen_random_uuid()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "sections",
+      "name": "plan_id",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "sections",
+      "name": "number",
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "sections",
+      "name": "title",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "sections",
+      "name": "summary",
+      "type": "text",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "sections",
+      "name": "week",
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "sections",
+      "name": "minutes",
+      "type": "integer",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "sections",
+      "name": "status",
+      "type": "section_status",
+      "typeSchema": "public",
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'locked'",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "sections",
+      "name": "current_step",
+      "type": "section_step",
+      "typeSchema": "public",
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "sections",
+      "name": "objectives",
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'[]'",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "sections",
+      "name": "lesson",
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": false,
+      "dimensions": 0,
+      "default": null,
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "sections",
+      "name": "resources",
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'[]'",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "sections",
+      "name": "quiz",
+      "type": "jsonb",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "'[]'",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "sections",
+      "name": "created_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "sections",
+      "name": "updated_at",
+      "type": "timestamp with time zone",
+      "typeSchema": null,
+      "notNull": true,
+      "dimensions": 0,
+      "default": "now()",
+      "generated": null,
+      "identity": null,
+      "entityType": "columns"
+    },
+    {
+      "schema": "public",
+      "table": "plans",
+      "name": "plans_user_id_index",
+      "nameExplicit": false,
+      "columns": [
+        {
+          "value": "user_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "entityType": "indexes"
+    },
+    {
+      "schema": "public",
+      "table": "quiz_attempts",
+      "name": "quiz_attempts_section_id_user_id_index",
+      "nameExplicit": false,
+      "columns": [
+        {
+          "value": "section_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "user_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "entityType": "indexes"
+    },
+    {
+      "schema": "public",
+      "table": "redo_items",
+      "name": "redo_items_user_id_next_review_on_index",
+      "nameExplicit": false,
+      "columns": [
+        {
+          "value": "user_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "next_review_on",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "entityType": "indexes"
+    },
+    {
+      "schema": "public",
+      "table": "schedule_entries",
+      "name": "schedule_entries_user_id_date_index",
+      "nameExplicit": false,
+      "columns": [
+        {
+          "value": "user_id",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        },
+        {
+          "value": "date",
+          "isExpression": false,
+          "asc": true,
+          "nullsFirst": false,
+          "opclass": null
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "with": "",
+      "method": "btree",
+      "concurrently": false,
+      "entityType": "indexes"
+    },
+    {
+      "schema": "public",
+      "table": "mastery_checks",
+      "name": "mastery_checks_section_id_sections_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "section_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "sections",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "quiz_attempts",
+      "name": "quiz_attempts_section_id_sections_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "section_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "sections",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "redo_items",
+      "name": "redo_items_plan_id_plans_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "plan_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "plans",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "redo_items",
+      "name": "redo_items_section_id_sections_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "section_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "sections",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "SET NULL",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "schedule_entries",
+      "name": "schedule_entries_plan_id_plans_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "plan_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "plans",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "schedule_entries",
+      "name": "schedule_entries_section_id_sections_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "section_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "sections",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "SET NULL",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "sections",
+      "name": "sections_plan_id_plans_id_fkey",
+      "nameExplicit": false,
+      "columns": [
+        "plan_id"
+      ],
+      "schemaTo": "public",
+      "tableTo": "plans",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "entityType": "fks"
+    },
+    {
+      "schema": "public",
+      "table": "mastery_checks",
+      "name": "mastery_checks_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "plans",
+      "name": "plans_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "quiz_attempts",
+      "name": "quiz_attempts_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "redo_items",
+      "name": "redo_items_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "schedule_entries",
+      "name": "schedule_entries_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "sections",
+      "name": "sections_pkey",
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "entityType": "pks"
+    },
+    {
+      "schema": "public",
+      "table": "sections",
+      "name": "sections_plan_id_number_unique",
+      "nameExplicit": false,
+      "columns": [
+        "plan_id",
+        "number"
+      ],
+      "nullsNotDistinct": false,
+      "entityType": "uniques"
+    }
+  ]
+}

@@ -1,8 +1,6 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowRight, CalendarDays, Check, Clock, Layers, Pause, Play, RefreshCcw, RotateCcw, X } from "lucide-react"
-
-import { getCurrentSection, getPlan, getPlanRecord, getSectionSteps, lessonHref } from "@/lib/mock-data"
 import { formatDayLabel, formatMinutes, formatShortDate, weeksBetween } from "@/lib/dates"
 import {
     Breadcrumbs,
@@ -16,12 +14,16 @@ import {
     primaryButton,
     secondaryButton,
 } from "@/components/plans/bits"
+import { getPlanRecord } from "@/lib/server/plans"
+import { getCurrentSection, getPlan, getSectionSteps, lessonHref } from "@/lib/mock-data"
 
 export default async function PlanPage(props: PageProps<"/your-plans/[planId]">) {
     const { planId } = await props.params
-    const record = getPlanRecord(planId)
+    const record = await getPlanRecord(planId) // Testing new API
     const plan = getPlan(planId)
     if (!record || !plan) notFound()
+
+    console.log(record)
 
     const current = getCurrentSection(record)
     const doneCount = record.sections.filter((s) => s.status === "done").length
@@ -132,7 +134,7 @@ export default async function PlanPage(props: PageProps<"/your-plans/[planId]">)
 
                 {/* Side column */}
                 <aside className="flex flex-col gap-5">
-                    {record.upcoming.length > 0 && (
+                    {record.upcoming?.length > 0 && (
                         <section aria-labelledby="upcoming-heading" className={`${card} flex flex-col gap-3 p-5`}>
                             <h2 id="upcoming-heading" className="font-heading text-lg font-bold">
                                 Coming up
@@ -155,14 +157,14 @@ export default async function PlanPage(props: PageProps<"/your-plans/[planId]">)
                                 Redo queue
                             </h2>
                             <span className="rounded-full bg-sun-soft px-2.5 py-1 text-xs font-bold text-sun-ink">
-                                {record.redo.length}
+                                {record.redo?.length || 0}
                             </span>
                         </div>
-                        {record.redo.length === 0 ? (
+                        {record.redo?.length === 0 ? (
                             <p className="text-sm text-slate-500">Nothing to redo. Missed questions show up here.</p>
                         ) : (
                             <ul className="flex flex-col gap-2">
-                                {record.redo.map((r) => (
+                                {record.redo?.map((r) => (
                                     <li key={r.prompt} className="flex items-start gap-3 rounded-2xl bg-slate-50 p-3">
                                         <RotateCcw className="mt-0.5 size-4 shrink-0 text-slate-500" aria-hidden="true" />
                                         <span className="min-w-0 flex-1 text-sm">
@@ -234,9 +236,8 @@ function Rule({ on, children }: { on: boolean; children: React.ReactNode }) {
     return (
         <li className="flex items-center gap-2.5">
             <span
-                className={`flex size-5 shrink-0 items-center justify-center rounded-full ${
-                    on ? "bg-mint-soft text-mint-ink" : "bg-slate-100 text-slate-500"
-                }`}
+                className={`flex size-5 shrink-0 items-center justify-center rounded-full ${on ? "bg-mint-soft text-mint-ink" : "bg-slate-100 text-slate-500"
+                    }`}
             >
                 {on ? <Check className="size-3" strokeWidth={3} aria-hidden="true" /> : <X className="size-3" strokeWidth={3} aria-hidden="true" />}
             </span>
@@ -252,9 +253,8 @@ function SectionRow({ planId, section: s }: { planId: string; section: PlanSecti
 
     return (
         <article
-            className={`flex flex-wrap items-start gap-4 rounded-3xl p-5 ${
-                isCurrent ? "border-2 border-brand bg-white" : isLocked ? "border border-slate-200 bg-slate-50" : "border border-slate-200 bg-white"
-            }`}
+            className={`flex flex-wrap items-start gap-4 rounded-3xl p-5 ${isCurrent ? "border-2 border-brand bg-white" : isLocked ? "border border-slate-200 bg-slate-50" : "border border-slate-200 bg-white"
+                }`}
         >
             <SectionMark status={s.status} size="lg" />
 
@@ -279,13 +279,12 @@ function SectionRow({ planId, section: s }: { planId: string; section: PlanSecti
                         {getSectionSteps(s).map((step) => (
                             <li
                                 key={step.step}
-                                className={`rounded-full px-3 py-1 text-xs font-bold ${
-                                    step.state === "done"
-                                        ? "bg-sun-soft text-sun-ink"
-                                        : step.state === "current"
-                                            ? "bg-brand text-white"
-                                            : "bg-slate-100 text-slate-500"
-                                }`}
+                                className={`rounded-full px-3 py-1 text-xs font-bold ${step.state === "done"
+                                    ? "bg-sun-soft text-sun-ink"
+                                    : step.state === "current"
+                                        ? "bg-brand text-white"
+                                        : "bg-slate-100 text-slate-500"
+                                    }`}
                             >
                                 {step.state === "done" ? "✓ " : ""}
                                 {step.label}
