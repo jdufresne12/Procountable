@@ -7,14 +7,14 @@ const UpNextCard = ({ session, plan }: Props) => {
     return (
         <article className="flex flex-[3_1_520px] flex-col gap-5 rounded-3xl bg-brand p-7 text-white">
             <div className="flex flex-wrap items-center justify-between gap-3">
-                <span className="text-[13px] font-bold uppercase tracking-[0.08em] text-white/85">Up next</span>
+                <span className="text-[15px] font-bold uppercase tracking-[0.08em] text-white/95">Up next</span>
                 <span className="rounded-full bg-sun px-3 py-1.5 text-[13px] font-bold text-slate-950">
                     About {session.minutesLeft} min left
                 </span>
             </div>
 
             <div className="flex flex-col gap-1.5">
-                <p className="text-[15px] text-white/85">
+                <p className="text-[13px] text-white/95 font-semibold">
                     {plan.name} · Section {session.sectionNumber} of {plan.totalSections}
                 </p>
                 <h3 className="font-heading text-3xl font-bold tracking-tight sm:text-[34px]">{session.title}</h3>
@@ -24,8 +24,8 @@ const UpNextCard = ({ session, plan }: Props) => {
                 {session.steps.map((step, i) => (
                     <li
                         key={step.label}
-                        className={`flex items-center gap-2.5 rounded-2xl p-3 text-sm font-semibold ${step.state === "current" ? "bg-white text-slate-950" : "bg-brand-deep text-white/90"
-                            }`}
+                        className={`flex items-center gap-2.5 rounded-2xl p-3 text-sm font-semibold 
+                            ${step.state === "current" ? "bg-white text-slate-950" : "bg-brand-deep text-white/90"}`}
                     >
                         {step.state === "done" && (
                             <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-sun text-slate-950">
@@ -55,7 +55,8 @@ const UpNextCard = ({ session, plan }: Props) => {
                 </div>
                 <Link
                     href={session.href}
-                    className="inline-flex h-12 items-center gap-2 rounded-2xl bg-sun px-5 text-[15px] font-bold text-slate-950 transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                    className="inline-flex h-12 items-center gap-2 rounded-2xl bg-sun px-5 text-[15px] font-bold text-slate-950 
+                        transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
                 >
                     Continue
                     <ArrowRight className="size-4" strokeWidth={2.5} aria-hidden="true" />
