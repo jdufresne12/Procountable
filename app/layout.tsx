@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Navbar from "../components/Navbar";
-import { ClerkProvider } from "@clerk/nextjs";
+import { ClerkProvider, Show } from "@clerk/nextjs";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,7 +14,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Heading / logo font. Used through the `font-heading` utility.
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-space-grotesk",
   subsets: ["latin"],
@@ -32,13 +31,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="flex min-h-full">
         <ClerkProvider
           appearance={{ variables: { colorPrimary: "#5b3df5" } }}
           afterSignOutUrl="/sign-in"
         >
-          <Navbar />
-          {children}
+          <Show when={"signed-in"}>
+            <Navbar />
+          </Show>
+
+          <div className="flex min-w-0 flex-1 flex-col">
+            {children}
+          </div>
         </ClerkProvider>
       </body>
     </html>

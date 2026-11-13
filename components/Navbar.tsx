@@ -1,82 +1,29 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Show, SignInButton, UserButton } from "@clerk/nextjs"
-import { Flame } from "lucide-react"
 import NavLinks from "./Navlinks"
-import InfoBubble from "./InfoBubble"
+import SidebarFooter from "./SidebarFooter"
+import { Settings } from "lucide-react"
 
 const Navbar = () => {
     return (
-        <header className="sticky top-0 z-40 w-full border-b border-slate-200/80 bg-white/85 backdrop-blur supports-backdrop-filter:bg-white/70">
-            <nav aria-label="Main" className="mx-auto flex h-16 items-center gap-4 px-4 sm:gap-8 sm:px-20">
-                {/* Logo */}
-                <Link
-                    href="/"
-                    aria-label="Procountable home"
-                    className="flex shrink-0 items-center gap-2.5 rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
-                >
-                    {/* Full logo on tablet and up, icon only on phones */}
-                    <Image
-                        src="/logo-full.svg"
-                        alt="logo"
-                        width={162}
-                        height={15}
-                        priority
-                        className="hidden h-9 w-auto sm:block"
-                    />
-                    <Image
-                        src="/logo-mark.svg"
-                        alt="logo"
-                        width={36}
-                        height={36}
-                        priority
-                        className="size-9 sm:hidden"
-                    />
-                </Link>
+        <aside
+            aria-label="Sidebar"
+            className="sticky top-0 hidden h-screen w-70 shrink-0 flex-col gap-6 border-r border-slate-200/80 bg-white px-3 py-5 md:flex"
+        >
+            <Link
+                href="/"
+                aria-label="Procountable home"
+                className="flex shrink-0 items-center rounded-xl px-2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+            >
+                <Image src="/logo-full.svg" alt="" width={162} height={36} priority className="h-9 w-auto" />
+            </Link>
 
-                {/* Main links */}
-                <Show when="signed-in">
-                    <NavLinks />
-                </Show>
-
-                {/* Right side */}
-                <div className="ml-auto flex items-center gap-2 sm:gap-3">
-                    <Show when="signed-in">
-                        <InfoBubble
-                            text="12-day streak"
-                            icon={Flame}
-                            color="bg-coral-soft"
-                            textColor="text-coral-ink"
-                            classNames="hidden h-10 px-3.5 md:inline-flex"
-                        />
-
-                        <div className="ml-1 flex h-10 items-center">
-                            <UserButton
-                                appearance={{
-                                    elements: {
-                                        avatarBox: {
-                                            width: "37px",
-                                            height: "37px",
-                                        }
-                                    }
-                                }}
-                            />
-                        </div>
-                    </Show>
-
-                    <Show when="signed-out">
-                        <SignInButton>
-                            <button
-                                type="button"
-                                className="inline-flex h-10 items-center rounded-xl bg-brand px-4 text-sm font-semibold text-white transition-colors hover:bg-brand-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-                            >
-                                Sign in
-                            </button>
-                        </SignInButton>
-                    </Show>
-                </div>
+            <nav aria-label="Main" className="-mx-1 flex-1 overflow-y-auto px-1">
+                <NavLinks />
             </nav>
-        </header>
+
+            <SidebarFooter />
+        </aside>
     )
 }
 

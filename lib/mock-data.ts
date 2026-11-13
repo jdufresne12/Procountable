@@ -1,7 +1,51 @@
+import { Layers, LayoutDashboard } from "lucide-react"
+
 export const mockUser = {
     timeZone: "America/New_York",
     streakDays: 12,
 }
+
+export const navTree: NavNode[] = [
+    { title: "Dashboard", href: "/", icon: LayoutDashboard },
+    {
+        title: "Plans",
+        href: "/your-plans",
+        icon: Layers,
+        children: [
+            {
+                title: "Coding interview refresh",
+                href: "/your-plans/coding-interview-refresh",
+                dotClass: "bg-brand/45",
+                children: [
+                    { title: "1. Arrays", href: "/your-plans/coding-interview-refresh/lesson/1", status: "done" },
+                    { title: "2. Stacks & lists", href: "/your-plans/coding-interview-refresh/lesson/2", status: "done" },
+                    { title: "3. Trees", href: "/your-plans/coding-interview-refresh/lesson/3", status: "current" },
+                    { title: "4. Graphs", href: "/your-plans/coding-interview-refresh/lesson/4", status: "locked" },
+                ],
+            },
+            {
+                title: "System design",
+                href: "/your-plans/system-design",
+                dotClass: "bg-sun",
+                children: [
+                    { title: "1. Foundations", href: "/your-plans/system-design/lesson/1", status: "done" },
+                    { title: "2. APIs and traffic", href: "/your-plans/system-design/lesson/2", status: "current" },
+                    { title: "3. Data storage", href: "/your-plans/system-design/lesson/3", status: "locked" },
+                ],
+            },
+            {
+                title: "AWS for full stack",
+                href: "/your-plans/aws-for-full-stack",
+                dotClass: "bg-coral/60",
+                children: [
+                    { title: "1. Accounts and IAM", href: "/your-plans/aws-for-full-stack/lesson/1", status: "current" },
+                    { title: "2. Networking basics", href: "/your-plans/aws-for-full-stack/lesson/2", status: "locked" },
+                    { title: "3. Compute options", href: "/your-plans/aws-for-full-stack/lesson/3", status: "locked" },
+                ],
+            },
+        ],
+    },
+]
 
 export const plans: Plan[] = [
     {

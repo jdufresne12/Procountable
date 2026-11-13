@@ -2,6 +2,15 @@ type PlanColor = "violet" | "sun" | "coral"
 type PlanStatus = "on-track" | "behind"
 type StepState = "done" | "current" | "locked"
 
+type NavNode = {
+    title: string
+    href: string
+    icon?: LucideIcon // top-level items
+    dotClass?: string // plans: their color
+    status?: "done" | "current" | "locked" // sections
+    children?: NavNode[]
+}
+
 type Plan = {
     id: string
     name: string
