@@ -97,7 +97,7 @@ type PlanRecord = {
     completedOn?: string
     rules: { masteryCheck: boolean; reminderTime: string | null; allowSkipping: boolean }
     sections: PlanSection[]
-    upcoming: { date: string; label: string; minutes: number }[]
+    upcoming: { date: string; section: number; step: LessonStep; minutes: number }[]
     redo: { prompt: string; section: number }[]
 }
 

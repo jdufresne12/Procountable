@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowRight, CalendarDays, Check, Clock, Layers, Pause, Play, RefreshCcw, RotateCcw, X } from "lucide-react"
-import { formatDayLabel, formatMinutes, formatShortDate, weeksBetween } from "@/lib/dates"
+import { formatDayLabel, formatISOToShortDate, formatMinutes, formatShortDate, weeksBetween } from "@/lib/dates"
 import {
     Breadcrumbs,
     OutcomeBadge,
@@ -14,18 +14,17 @@ import {
     primaryButton,
     secondaryButton,
 } from "@/components/plans/bits"
-import { getPlanRecord } from "@/lib/server/plans"
-import { getCurrentSection, getPlan, getSectionSteps, lessonHref } from "@/lib/mock-data"
+import { getPlanRecord, type PlanSection as PlanSectionNew } from "@/lib/server/plans"
+import { getPlan, getSectionSteps, lessonHref } from "@/lib/mock-data"
 
 export default async function PlanPage(props: PageProps<"/your-plans/[planId]">) {
     const { planId } = await props.params
-    const record = await getPlanRecord(planId) // Testing new API
+
+    const record = await getPlanRecord(planId)
     const plan = getPlan(planId)
     if (!record || !plan) notFound()
 
-    console.log(record)
-
-    const current = getCurrentSection(record)
+    const current = record.sections.find((s) => s.status === "current")
     const doneCount = record.sections.filter((s) => s.status === "done").length
     const results = record.sections.filter((s) => s.mastery)
     const weeks = Array.from(new Set(record.sections.map((s) => s.week))).sort((a, b) => a - b)
@@ -191,7 +190,7 @@ export default async function PlanPage(props: PageProps<"/your-plans/[planId]">)
                                             <span className="block truncate font-semibold">
                                                 {s.number}. {s.title}
                                             </span>
-                                            <span className="text-xs text-slate-500">{formatShortDate(s.mastery!.takenOn)}</span>
+                                            <span className="text-xs text-slate-500">{formatISOToShortDate(s.mastery!.takenOn)}</span>
                                         </span>
                                         <OutcomeBadge outcome={s.mastery!.outcome} />
                                     </li>
@@ -246,7 +245,7 @@ function Rule({ on, children }: { on: boolean; children: React.ReactNode }) {
     )
 }
 
-function SectionRow({ planId, section: s }: { planId: string; section: PlanSection }) {
+function SectionRow({ planId, section: s }: { planId: string; section: PlanSectionNew }) {
     const href = lessonHref(planId, s.number)
     const isCurrent = s.status === "current"
     const isLocked = s.status === "locked"

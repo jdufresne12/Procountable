@@ -14,7 +14,7 @@ export const masteryOutcome = pgEnum("mastery_outcome", ["pass", "pass-with-gaps
 // Spread into any table that needs them
 const timestamps = {
     createdAt: timestamp({ withTimezone: true }).notNull().defaultNow(),
-    updatedAt: timestamp({ withTimezone: true }).notNull().defaultNow()
+    updatedAt: timestamp({ withTimezone: true }).notNull().defaultNow().$onUpdate(() => new Date()),
 }
 
 // _______ Plans _______
@@ -84,7 +84,7 @@ export const masteryChecks = snakeCase.table("mastery_checks",
         sectionId: uuid().notNull().references(() => sections.id, { onDelete: "cascade" }),
         outcome: masteryOutcome().notNull(),
         rubric: jsonb().$type<RubricItem[]>().notNull(),
-        tranScript: jsonb().$type<{ role: "ai" | "user"; text: string }[]>(),
+        transcript: jsonb().$type<{ role: "ai" | "user"; text: string }[]>(),
         takenOn: timestamp({ withTimezone: true }).notNull().defaultNow(),
     }
 )
@@ -117,6 +117,7 @@ export const scheduleEntries = snakeCase.table(
         date: date({ mode: "string" }).notNull(),
         minutes: integer().notNull(),
         done: boolean().notNull().default(false),
+        step: sectionStep().notNull(),
     },
     (t) => [index().on(t.userId, t.date)],
 )

@@ -34,9 +34,14 @@ export function formatMinutes(total: number) {
 // keeps the day from shifting depending on where the server runs.
 const isoToDate = (iso: string) => new Date(`${iso}T00:00:00Z`)
 
-/** "2026-12-23" → "Dec 23" */
+/** "2026-12-23" → "Dec 23" (REMOVE ONCE MOCK DATA IS GONE) */
 export function formatShortDate(iso: string) {
     return isoToDate(iso).toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" })
+}
+
+/** "2026-12-23" → "Dec 23" */
+export function formatISOToShortDate(date: Date) {
+    return date.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" })
 }
 
 /** "2026-11-12" → "Thu, Nov 12" */

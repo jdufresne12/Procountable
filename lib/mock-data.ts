@@ -1,4 +1,5 @@
 import { Layers, LayoutDashboard } from "lucide-react"
+import { type PlanSection as PlanSectionNew } from "@/lib/server/plans"
 
 // =============================================================================
 // Mock data. Everything the pages show is derived from `planRecords`, the same
@@ -52,9 +53,9 @@ export const planRecords: PlanRecord[] = [
         hoursPerWeek: 10,
         rules: { masteryCheck: true, reminderTime: "7:30 PM", allowSkipping: false },
         upcoming: [
-            { date: "2026-11-12", label: "Trees: practice", minutes: 25 },
-            { date: "2026-11-13", label: "Trees: mastery check", minutes: 10 },
-            { date: "2026-11-15", label: "Graphs: learn", minutes: 40 },
+            { date: "2026-11-12", section: 3, step: "practice", minutes: 25 },
+            { date: "2026-11-13", section: 3, step: "practice", minutes: 10 },
+            { date: "2026-11-15", section: 4, step: "learn", minutes: 40 },
         ],
         redo: [
             { prompt: "Reverse a linked list in groups of k", section: 2 },
@@ -216,9 +217,9 @@ export const planRecords: PlanRecord[] = [
         hoursPerWeek: 5,
         rules: { masteryCheck: true, reminderTime: "7:30 PM", allowSkipping: false },
         upcoming: [
-            { date: "2026-11-12", label: "APIs and traffic: learn", minutes: 45 },
-            { date: "2026-11-13", label: "Design a rate limiter", minutes: 45 },
-            { date: "2026-11-16", label: "APIs and traffic: check", minutes: 10 },
+            { date: "2026-11-12", section: 2, step: "learn", minutes: 45 },
+            { date: "2026-11-13", section: 2, step: "practice", minutes: 45 },
+            { date: "2026-11-16", section: 2, step: "check", minutes: 10 },
         ],
         redo: [{ prompt: "Estimate storage for a URL shortener", section: 1 }],
         sections: [
@@ -299,9 +300,9 @@ export const planRecords: PlanRecord[] = [
         hoursPerWeek: 8,
         rules: { masteryCheck: true, reminderTime: "7:30 PM", allowSkipping: true },
         upcoming: [
-            { date: "2026-11-12", label: "Accounts and IAM: learn", minutes: 30 },
-            { date: "2026-11-13", label: "Accounts and IAM: practice", minutes: 20 },
-            { date: "2026-11-14", label: "Networking basics: learn", minutes: 40 },
+            { date: "2026-11-12", section: 1, step: "learn", minutes: 30 },
+            { date: "2026-11-13", section: 1, step: "practice", minutes: 20 },
+            { date: "2026-11-14", section: 2, step: "learn", minutes: 40 },
         ],
         redo: [],
         sections: [
@@ -472,7 +473,7 @@ export const lessonHref = (planId: string, sectionNumber: number) => `/your-plan
 const stepOrder: LessonStep[] = ["learn", "practice", "check"]
 const stepLabels: Record<LessonStep, string> = { learn: "Learn", practice: "Practice", check: "Mastery check" }
 
-export function getSectionSteps(s: PlanSection): { step: LessonStep; label: string; state: StepState }[] {
+export function getSectionSteps(s: PlanSection | PlanSectionNew): { step: LessonStep; label: string; state: StepState }[] {
     const currentIndex = stepOrder.indexOf(s.currentStep ?? "learn")
     return stepOrder.map((step, i) => {
         let state: StepState

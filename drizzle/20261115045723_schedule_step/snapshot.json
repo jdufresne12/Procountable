@@ -1,0 +1,74 @@
+{
+  "type": "diff",
+  "version": "9",
+  "dialect": "postgres",
+  "id": "0ec94c21-e13e-45a0-8563-609104a6e7bd",
+  "prevIds": [
+    "c067d629-407c-4ee5-871a-a73578534594"
+  ],
+  "footprints": [
+    {
+      "statementType": "rename_column",
+      "statementTarget": [
+        "column",
+        "public",
+        "mastery_checks",
+        "tran_script"
+      ],
+      "writes": [
+        "s|col|public.mastery_checks.tran_script",
+        "n|col|public.mastery_checks.tran_script",
+        "s|col|public.mastery_checks.transcript",
+        "n|col|public.mastery_checks.transcript"
+      ],
+      "reads": [
+        "n|tbl|public.mastery_checks",
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "add_column",
+      "statementTarget": [
+        "column",
+        "public",
+        "schedule_entries",
+        "step"
+      ],
+      "writes": [
+        "s|col|public.schedule_entries.step",
+        "n|col|public.schedule_entries.step",
+        "e|col|public.schedule_entries.step"
+      ],
+      "reads": [
+        "n|tbl|public.schedule_entries",
+        "n|sch|public",
+        "n|enum|public.section_step"
+      ]
+    }
+  ],
+  "deltas": [
+    {
+      "op": "rename",
+      "key": "columns\u0000[\"public\",\"mastery_checks\",\"tran_script\"]",
+      "set": {
+        "name": "transcript"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "schedule_entries",
+        "name": "step",
+        "type": "section_step",
+        "typeSchema": "public",
+        "notNull": true,
+        "dimensions": 0,
+        "default": null,
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    }
+  ]
+}

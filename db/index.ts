@@ -9,5 +9,5 @@ const globalForDB = globalThis as unknown as { pg?: ReturnType<typeof postgres> 
 const client = globalForDB.pg ?? postgres(process.env.DATABASE_URL!, { prepare: false })
 if (process.env.NODE_ENV !== "production") globalForDB.pg = client
 
-export const db = drizzle({ client, relations, logger: true })
+export const db = drizzle({ client, relations, logger: false /* true: to see logs on every call to db */ })
 export type DB = typeof db
