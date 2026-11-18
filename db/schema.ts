@@ -90,8 +90,7 @@ export const masteryChecks = snakeCase.table("mastery_checks",
 )
 
 // ______ Redo Items ______
-export const redoItems = snakeCase.table(
-    "redo_items",
+export const redoItems = snakeCase.table("redo_items",
     {
         id: integer().primaryKey().generatedAlwaysAsIdentity(),
         userId: text().notNull(),
@@ -107,8 +106,7 @@ export const redoItems = snakeCase.table(
 )
 
 // ______ Schedule Entries ______
-export const scheduleEntries = snakeCase.table(
-    "schedule_entries",
+export const scheduleEntries = snakeCase.table("schedule_entries",
     {
         id: integer().primaryKey().generatedAlwaysAsIdentity(),
         userId: text().notNull(),

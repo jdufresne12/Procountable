@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Check, Lock } from "lucide-react"
 import { planColorClasses } from "@/lib/plan-colors"
+import { type Plan } from "@/lib/server/plans"
 
 // Small presentational pieces shared by the plan, lesson and "your plans" pages.
 
@@ -16,15 +17,23 @@ export function PlanSwatch({ color, className = "size-3" }: { color: PlanColor; 
 
 const badgeTones = {
     "on-track": "bg-mint-soft text-mint-ink",
-    behind: "bg-coral-soft text-coral-ink",
-    paused: "bg-slate-100 text-slate-700",
-    completed: "bg-brand-soft text-brand-ink",
+    "behind": "bg-coral-soft text-coral-ink",
+    "paused": "bg-slate-100 text-slate-700",
+    "completed": "bg-brand-soft text-brand-ink",
 }
 
-export function PlanStatusBadge({ plan }: { plan: Plan }) {
-    const tone = plan.lifecycle === "active" ? badgeTones[plan.status] : badgeTones[plan.lifecycle]
+export function PlanStatusBadge({ lifecycle, schedule, daysBehind }: Plan) {
+    const tone = lifecycle === "active" ? badgeTones[schedule] : badgeTones[lifecycle]
+
+    let statusLabel
+    if (lifecycle === "active") {
+        statusLabel = (daysBehind > 0) ? `${daysBehind ?? 1} day${daysBehind === 1 ? "" : "s"} behind` : "On track"
+    } else {
+        statusLabel = lifecycle === "paused" ? "Paused" : "Completed"
+    }
+
     return (
-        <span className={`shrink-0 rounded-full px-2.5 py-1 text-xs font-bold ${tone}`}>{plan.statusLabel}</span>
+        <span className={`shrink-0 rounded-full px-2.5 py-1 text-xs font-bold ${tone}`}>{statusLabel}</span>
     )
 }
 

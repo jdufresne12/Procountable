@@ -7,6 +7,7 @@ import { ArrowRight, BookOpen, Check, ExternalLink, FileText, Lock, Mic, PlayCir
 import LessonContent from "./LessonContent"
 import Quiz from "./Quiz"
 import { LevelBadge, OutcomeBadge, card, focusRing, primaryButton, secondaryButton } from "@/components/plans/bits"
+import type { PlanSection, MasteryResult } from "@/lib/server/plans"
 
 type Props = {
     section: PlanSection
@@ -31,7 +32,7 @@ const resourceIcons = { video: PlayCircle, article: FileText, docs: BookOpen, pr
 // Stand-in until real mastery interviews exist: everything "solid".
 const sampleResult = (section: PlanSection): MasteryResult => ({
     outcome: "pass",
-    takenOn: new Date().toISOString().slice(0, 10),
+    takenOn: new Date(),
     rubric: section.objectives.map((objective) => ({ objective, level: "solid", note: "Sample result" })),
 })
 
@@ -85,22 +86,20 @@ const LessonFlow = ({ section, allowSkipping, planHref }: Props) => {
                             aria-selected={s.id === step}
                             disabled={locked}
                             onClick={() => setStep(s.id)}
-                            className={`flex min-h-16 items-center gap-3 rounded-2xl border-2 px-4 py-3 text-left transition-colors disabled:cursor-not-allowed ${focusRing} ${
-                                s.id === step
-                                    ? "border-brand bg-brand text-white"
-                                    : locked
-                                        ? "border-dashed border-slate-300 text-slate-500"
-                                        : "border-slate-200 bg-white text-slate-900 hover:border-brand/40"
-                            }`}
+                            className={`flex min-h-16 items-center gap-3 rounded-2xl border-2 px-4 py-3 text-left transition-colors disabled:cursor-not-allowed ${focusRing} ${s.id === step
+                                ? "border-brand bg-brand text-white"
+                                : locked
+                                    ? "border-dashed border-slate-300 text-slate-500"
+                                    : "border-slate-200 bg-white text-slate-900 hover:border-brand/40"
+                                }`}
                         >
                             <span
-                                className={`flex size-8 shrink-0 items-center justify-center rounded-full font-heading text-sm font-bold ${
-                                    s.id === step
-                                        ? "bg-white text-slate-950"
-                                        : state === "done" && !locked
-                                            ? "bg-sun text-slate-950"
-                                            : "bg-slate-100 text-slate-600"
-                                }`}
+                                className={`flex size-8 shrink-0 items-center justify-center rounded-full font-heading text-sm font-bold ${s.id === step
+                                    ? "bg-white text-slate-950"
+                                    : state === "done" && !locked
+                                        ? "bg-sun text-slate-950"
+                                        : "bg-slate-100 text-slate-600"
+                                    }`}
                             >
                                 {locked ? <Lock className="size-3.5" aria-hidden="true" /> : state === "done" ? <Check className="size-4" strokeWidth={3} aria-hidden="true" /> : i + 1}
                             </span>
@@ -113,7 +112,12 @@ const LessonFlow = ({ section, allowSkipping, planHref }: Props) => {
                 })}
             </div>
 
-            <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
+            <div
+                className={`grid items-start gap-6 ${step === "learn"
+                    ? "lg:grid-cols-[minmax(0,1fr)_340px]"
+                    : "grid-cols-1"
+                    }`}
+            >
                 {/* Main panel */}
                 <div role="tabpanel" className={`p-6 sm:p-9 ${step === "check" ? "rounded-3xl border-2 border-brand bg-white" : card}`}>
                     {step === "learn" && (
@@ -238,47 +242,46 @@ const LessonFlow = ({ section, allowSkipping, planHref }: Props) => {
                     )}
                 </div>
 
-                {/* Side column */}
-                <aside className="flex flex-col gap-5">
-                    {section.resources.length > 0 && (
-                        <section aria-labelledby="resources-heading" className={`${card} flex flex-col gap-3 p-5`}>
-                            <h2 id="resources-heading" className="font-heading text-lg font-bold">
-                                Resources
-                            </h2>
-                            <ul className="flex flex-col gap-2">
-                                {section.resources.map((r) => {
-                                    const Icon = resourceIcons[r.kind]
-                                    return (
-                                        <li key={r.url}>
-                                            <a
-                                                href={r.url}
-                                                target="_blank"
-                                                rel="noreferrer"
-                                                className={`flex items-center gap-3 rounded-2xl bg-slate-50 p-3 transition-colors hover:bg-slate-100 ${focusRing}`}
-                                            >
-                                                <Icon className="size-5 shrink-0 text-brand-ink" aria-hidden="true" />
-                                                <span className="flex min-w-0 flex-1 flex-col">
-                                                    <span className="truncate text-sm font-semibold">{r.title}</span>
-                                                    <span className="text-xs text-slate-500">{r.meta}</span>
-                                                </span>
-                                                <ExternalLink className="size-4 shrink-0 text-slate-400" aria-hidden="true" />
-                                                <span className="sr-only">(opens in a new tab)</span>
-                                            </a>
-                                        </li>
-                                    )
-                                })}
-                            </ul>
-                        </section>
-                    )}
+                {/* Side column (Hidden for "Practice" & "Mastery") */}
+                {step === "learn" && (
+                    <aside className="flex flex-col gap-5">
+                        {section.resources.length > 0 ? (
+                            <section aria-labelledby="resources-heading" className={`${card} flex flex-col gap-3 p-5`}>
+                                <h2 id="resources-heading" className="font-heading text-lg font-bold">
+                                    Resources
+                                </h2>
+                                <ul className="flex flex-col gap-2">
+                                    {section.resources.map((r) => {
+                                        const Icon = resourceIcons[r.kind]
+                                        return (
+                                            <li key={r.url}>
+                                                <a
+                                                    href={r.url}
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    className={`flex items-center gap-3 rounded-2xl bg-slate-50 p-3 transition-colors hover:bg-slate-100 ${focusRing}`}
+                                                >
+                                                    <Icon className="size-5 shrink-0 text-brand-ink" aria-hidden="true" />
+                                                    <span className="flex min-w-0 flex-1 flex-col">
+                                                        <span className="truncate text-sm font-semibold">{r.title}</span>
+                                                        <span className="text-xs text-slate-500">{r.meta}</span>
+                                                    </span>
+                                                    <ExternalLink className="size-4 shrink-0 text-slate-400" aria-hidden="true" />
+                                                    <span className="sr-only">(opens in a new tab)</span>
+                                                </a>
+                                            </li>
+                                        )
+                                    })}
+                                </ul>
+                            </section>
+                        ) : (
+                            <section className="rounded-3xl border border-dashed border-slate-300 p-5">
+                                <p className="mt-1 text-sm text-slate-600">
+                                    No resources for this lesson
+                                </p>
+                            </section>
+                        )}
 
-                    {inCheckInterview ? (
-                        <section className="rounded-3xl border border-dashed border-slate-300 p-5">
-                            <h2 className="font-heading text-lg font-bold">Tutor is off</h2>
-                            <p className="mt-1 text-sm text-slate-600">
-                                During a mastery check you answer on your own. The tutor comes back when it ends.
-                            </p>
-                        </section>
-                    ) : (
                         <section aria-labelledby="tutor-heading" className={`${card} flex flex-col gap-3.5 p-5`}>
                             <div className="flex items-center gap-3">
                                 <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-brand text-white">
@@ -314,8 +317,8 @@ const LessonFlow = ({ section, allowSkipping, planHref }: Props) => {
                                 </button>
                             </form>
                         </section>
-                    )}
-                </aside>
+                    </aside>
+                )}
             </div>
         </div>
     )

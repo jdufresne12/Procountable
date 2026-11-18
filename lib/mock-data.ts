@@ -468,7 +468,7 @@ export const planRecords: PlanRecord[] = [
 // ---------------------------------------------------------------------------
 
 export const planHref = (planId: string) => `/your-plans/${planId}`
-export const lessonHref = (planId: string, sectionNumber: number) => `/your-plans/${planId}/lesson/${sectionNumber}`
+export const lessonHref = (planId: string, sectionNumber: number) => `/your-plans/${planId}/section/${sectionNumber}`
 
 const stepOrder: LessonStep[] = ["learn", "practice", "check"]
 const stepLabels: Record<LessonStep, string> = { learn: "Learn", practice: "Practice", check: "Mastery check" }

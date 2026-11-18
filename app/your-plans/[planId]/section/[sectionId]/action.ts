@@ -1,7 +1,6 @@
 "use server"
 import { revalidatePath } from "next/cache"
 import { z } from "zod"
-import { requireUserId } from "@/lib/server/plans"
 import { advanceStep } from "@/lib/server/sections"
 
 const input = z.object({
@@ -10,9 +9,8 @@ const input = z.object({
 })
 
 export async function finishStepAction(raw: unknown) {
-    const userId = await requireUserId()                        // 1. who is this
-    const { planId, number } = input.parse(raw)                 // 2. is the input sane
-    const result = await advanceStep(userId, planId, number)    // 3. owns it + do it
+    const { planId, number } = input.parse(raw)
+    const result = await advanceStep(planId, number)
     revalidatePath(`/your-plans/${planId}`)
     return result
 }

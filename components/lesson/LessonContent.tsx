@@ -1,4 +1,5 @@
 import { Lightbulb, Sparkles } from "lucide-react"
+import { PlanSection } from "@/lib/server/plans"
 
 // Renders the AI-written lesson as simple blocks. When a lesson hasn't been
 // generated yet, shows the section's goals instead.

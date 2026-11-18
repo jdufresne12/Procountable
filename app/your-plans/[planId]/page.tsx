@@ -14,20 +14,30 @@ import {
     primaryButton,
     secondaryButton,
 } from "@/components/plans/bits"
-import { getPlanRecord, type PlanSection as PlanSectionNew } from "@/lib/server/plans"
-import { getPlan, getSectionSteps, lessonHref } from "@/lib/mock-data"
+import { getPlan, type PlanSection as PlanSectionNew } from "@/lib/server/plans"
+import { getSectionSteps, lessonHref } from "@/lib/mock-data"
 
 export default async function PlanPage(props: PageProps<"/your-plans/[planId]">) {
     const { planId } = await props.params
 
-    const record = await getPlanRecord(planId)
-    const plan = getPlan(planId)
-    if (!record || !plan) notFound()
+    const plan = await getPlan(planId)
+    if (!plan) notFound()
 
-    const current = record.sections.find((s) => s.status === "current")
-    const doneCount = record.sections.filter((s) => s.status === "done").length
-    const results = record.sections.filter((s) => s.mastery)
-    const weeks = Array.from(new Set(record.sections.map((s) => s.week))).sort((a, b) => a - b)
+    console.log("plan", plan)
+
+    const current = plan.sections.find((s) => s.status === "current")
+    const doneCount = plan.sections.filter((s) => s.status === "done").length
+    const results = plan.sections.filter((s) => s.mastery)
+    const weeks = Array.from(new Set(plan.sections.map((s) => s.week))).sort((a, b) => a - b)
+
+    const progress = (): number => {
+        const currStepCount = current?.currentStep === "learn"
+            ? 0
+            : current?.currentStep === "practice"
+                ? 1 / 3
+                : 2 / 3
+        return Math.trunc((doneCount + currStepCount) / plan.sections.length * 100)
+    }
 
     return (
         <main className="mx-auto flex w-full max-w-7xl flex-col gap-7 px-4 py-8 sm:px-6 lg:py-10">
@@ -40,16 +50,16 @@ export default async function PlanPage(props: PageProps<"/your-plans/[planId]">)
                         <div className="flex flex-wrap items-center gap-3">
                             <PlanSwatch color={plan.color} className="size-4" />
                             <h1 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">{plan.name}</h1>
-                            <PlanStatusBadge plan={plan} />
+                            <PlanStatusBadge {...plan} />
                         </div>
-                        <p className="text-base text-slate-600">{record.goal}</p>
+                        <p className="text-base text-slate-600">{plan.goal}</p>
                         <ul className="flex flex-wrap gap-2 text-sm text-slate-700">
                             <MetaChip icon={CalendarDays}>
-                                {formatShortDate(record.startDate)} – {formatShortDate(record.endDate)} ·{" "}
-                                {weeksBetween(record.startDate, record.endDate)} weeks
+                                {formatShortDate(plan.startDate)} – {formatShortDate(plan.endDate)} ·{" "}
+                                {weeksBetween(plan.startDate, plan.endDate)} weeks
                             </MetaChip>
-                            <MetaChip icon={Clock}>{record.hoursPerWeek} hours / week</MetaChip>
-                            <MetaChip icon={Layers}>{record.sections.length} sections</MetaChip>
+                            <MetaChip icon={Clock}>{plan.hoursPerWeek} hours / week</MetaChip>
+                            <MetaChip icon={Layers}>{plan.sections.length} sections</MetaChip>
                         </ul>
                     </div>
 
@@ -82,23 +92,24 @@ export default async function PlanPage(props: PageProps<"/your-plans/[planId]">)
 
                 <div className={`${card} flex flex-wrap items-center gap-x-8 gap-y-4 p-5`}>
                     <div className="flex items-baseline gap-2">
-                        <span className="font-heading text-4xl font-bold">{plan.progress}%</span>
+                        <span className="font-heading text-4xl font-bold">{progress()}%</span>
                         <span className="text-sm text-slate-500">complete</span>
                     </div>
                     <div className="flex min-w-60 flex-1 flex-col gap-2">
-                        <ProgressBar value={plan.progress} color={plan.color} className="h-3" />
+                        <ProgressBar value={progress()} color={plan.color} className="h-3" />
                         <span className="text-sm text-slate-600">
-                            {doneCount} of {record.sections.length} sections done
+                            {doneCount} of {plan.sections.length} sections done
                             {current ? ` · now on ${current.title}` : ""}
                         </span>
                     </div>
                 </div>
 
-                {plan.lifecycle === "active" && plan.status === "behind" && (
+                {plan.lifecycle === "active" && plan.schedule === "behind" && (
                     <div className="flex flex-wrap items-center gap-3 rounded-2xl bg-coral-soft px-5 py-4">
                         <p className="min-w-60 flex-1 text-sm text-coral-ink">
-                            <strong>{plan.statusLabel}.</strong> Rebalancing spreads the missed sessions over the coming
-                            weeks and keeps your end date of {formatShortDate(record.endDate)}.
+                            <strong>{`${plan.daysBehind ?? 1} day${plan.daysBehind === 1 ? "" : "s"} behind`}. </strong>
+                            Rebalancing spreads the missed sessions over the coming
+                            weeks and keeps your end date of {formatShortDate(plan.endDate)}.
                         </p>
                         <button type="button" className={darkButton}>
                             <RefreshCcw className="size-4" aria-hidden="true" />
@@ -119,7 +130,7 @@ export default async function PlanPage(props: PageProps<"/your-plans/[planId]">)
                         <div key={week} className="flex flex-col gap-3">
                             <h3 className="text-[13px] font-bold tracking-[0.08em] text-slate-500 uppercase">Week {week}</h3>
                             <ol className="flex flex-col gap-3">
-                                {record.sections
+                                {plan.sections
                                     .filter((s) => s.week === week)
                                     .map((s) => (
                                         <li key={s.number}>
@@ -133,13 +144,13 @@ export default async function PlanPage(props: PageProps<"/your-plans/[planId]">)
 
                 {/* Side column */}
                 <aside className="flex flex-col gap-5">
-                    {record.upcoming?.length > 0 && (
+                    {plan.upcoming?.length > 0 && (
                         <section aria-labelledby="upcoming-heading" className={`${card} flex flex-col gap-3 p-5`}>
                             <h2 id="upcoming-heading" className="font-heading text-lg font-bold">
                                 Coming up
                             </h2>
                             <ul className="flex flex-col gap-2">
-                                {record.upcoming.map((u) => (
+                                {plan.upcoming.map((u) => (
                                     <li key={u.date + u.label} className="flex items-center gap-3 rounded-2xl bg-slate-50 p-3">
                                         <span className="w-20 shrink-0 text-xs font-bold text-slate-600">{formatDayLabel(u.date)}</span>
                                         <span className="min-w-0 flex-1 truncate text-sm font-semibold">{u.label}</span>
@@ -156,14 +167,14 @@ export default async function PlanPage(props: PageProps<"/your-plans/[planId]">)
                                 Redo queue
                             </h2>
                             <span className="rounded-full bg-sun-soft px-2.5 py-1 text-xs font-bold text-sun-ink">
-                                {record.redo?.length || 0}
+                                {plan.redo?.length || 0}
                             </span>
                         </div>
-                        {record.redo?.length === 0 ? (
+                        {plan.redo?.length === 0 ? (
                             <p className="text-sm text-slate-500">Nothing to redo. Missed questions show up here.</p>
                         ) : (
                             <ul className="flex flex-col gap-2">
-                                {record.redo?.map((r) => (
+                                {plan.redo?.map((r) => (
                                     <li key={r.prompt} className="flex items-start gap-3 rounded-2xl bg-slate-50 p-3">
                                         <RotateCcw className="mt-0.5 size-4 shrink-0 text-slate-500" aria-hidden="true" />
                                         <span className="min-w-0 flex-1 text-sm">
@@ -204,12 +215,12 @@ export default async function PlanPage(props: PageProps<"/your-plans/[planId]">)
                             Plan rules
                         </h2>
                         <ul className="flex flex-col gap-2.5 text-sm">
-                            <Rule on={record.rules.masteryCheck}>Mastery check before each new section</Rule>
-                            <Rule on={!!record.rules.reminderTime}>
-                                {record.rules.reminderTime ? `Email reminder at ${record.rules.reminderTime}` : "No reminders"}
+                            <Rule on={plan.rules.masteryCheck}>Mastery check before each new section</Rule>
+                            <Rule on={!!plan.rules.reminderTime}>
+                                {plan.rules.reminderTime ? `Email reminder at ${plan.rules.reminderTime}` : "No reminders"}
                             </Rule>
-                            <Rule on={record.rules.allowSkipping}>
-                                {record.rules.allowSkipping ? "Skipping allowed (logged)" : "Sections can't be skipped"}
+                            <Rule on={plan.rules.allowSkipping}>
+                                {plan.rules.allowSkipping ? "Skipping allowed (logged)" : "Sections can't be skipped"}
                             </Rule>
                         </ul>
                         <button type="button" className={`${secondaryButton} mt-1`}>

@@ -13,12 +13,12 @@ export async function requireUserId() {
 const stepLabels = { learn: "learn", practice: "practice", check: "mastery check" } as const
 
 /**
- * Obtains and builds a PlanRecord object
+ * Retrieves and builds a PlanRecord object
  * 
  * @params {string} planID - ID of the plan to gather    
  * @returns {PlanRecord} All data relevant to a specific plan (sections, rule, start/end, etc.)                         
  */
-export const getPlanRecord = cache(async (planId: string) => {
+export const getPlan = cache(async (planId: string) => {
     const userId = await requireUserId()
     const row = await db.query.plans.findFirst({
         where: { id: planId, userId },
@@ -65,7 +65,7 @@ export const getPlanRecord = cache(async (planId: string) => {
 
 
 /**
- * Obtains all learning plans with an optional lifecyle filter
+ * Retrieves all learning plans with an optional lifecyle filter
  * 
  * @params {enum: "active" | "paused" | "completed" } lifecyle - Optional lifecyle filter
  * @returns {Plan[]} An array of Plans
@@ -81,8 +81,9 @@ export const getPlans = cache(async (lifecycle?: "active" | "paused" | "complete
 })
 
 // _____ Return Object Types _____
-export type PlanRecord = NonNullable<Awaited<ReturnType<typeof getPlanRecord>>>
-export type PlanSection = PlanRecord["sections"][number]
+export type Plan = NonNullable<Awaited<ReturnType<typeof getPlan>>>
+export type PlanSection = Plan["sections"][number]
+export type MasteryResult = Pick<NonNullable<PlanSection["mastery"]>, "outcome" | "rubric" | "takenOn">
 
 /* _____ NOTES _____
     cache(): called by both the page and generateMetadata? Only one query runs.

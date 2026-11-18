@@ -1,22 +1,21 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowLeft, ArrowRight, Lock } from "lucide-react"
-
-import { getCurrentSection, getPlan, getPlanRecord, lessonHref } from "@/lib/mock-data"
+import { getPlan } from "@/lib/server/plans"
+import { lessonHref } from "@/lib/mock-data"
 import { formatMinutes } from "@/lib/dates"
 import { Breadcrumbs, PlanSwatch, card, focusRing, primaryButton } from "@/components/plans/bits"
 import LessonFlow from "@/components/lesson/LessonFlow"
 
-export default async function LessonPage(props: PageProps<"/your-plans/[planId]/lesson/[lessonId]">) {
-    const { planId, lessonId } = await props.params
-    const record = getPlanRecord(planId)
-    const plan = getPlan(planId)
-    const section = record?.sections.find((s) => s.number === Number(lessonId))
-    if (!record || !plan || !section) notFound()
+export default async function SectionPage(props: PageProps<"/your-plans/[planId]/section/[sectionId]">) {
+    const { planId, sectionId } = await props.params
+    const plan = await getPlan(planId)
+    const section = plan?.sections.find((s) => s.number === Number(sectionId))
+    if (!plan || !section) notFound()
 
-    const prev = record.sections.find((s) => s.number === section.number - 1)
-    const next = record.sections.find((s) => s.number === section.number + 1)
-    const current = getCurrentSection(record)
+    const prev = plan.sections.find((s) => s.number === section.number - 1)
+    const next = plan.sections.find((s) => s.number === section.number + 1)
+    const current = plan.sections.find((s) => s.status === "current")
 
     return (
         <main className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-8 sm:px-6 lg:py-10">
@@ -24,7 +23,7 @@ export default async function LessonPage(props: PageProps<"/your-plans/[planId]/
                 <Breadcrumbs
                     items={[
                         { label: "Your plans", href: "/your-plans" },
-                        { label: plan.name, href: plan.href },
+                        { label: plan.name, href: `/your-plans/${plan.id}` },
                         { label: `Section ${section.number}` },
                     ]}
                 />
@@ -33,14 +32,14 @@ export default async function LessonPage(props: PageProps<"/your-plans/[planId]/
                     <div className="flex flex-col gap-1.5">
                         <span className="inline-flex items-center gap-2 text-[13px] font-bold tracking-[0.08em] text-slate-500 uppercase">
                             <PlanSwatch color={plan.color} className="size-2.5" />
-                            Section {section.number} of {record.sections.length} · about {formatMinutes(section.minutes)}
+                            Section {section.number} of {plan.sections.length} · about {formatMinutes(section.minutes)}
                         </span>
                         <h1 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">{section.title}</h1>
                     </div>
 
                     {/* Every section in the plan; reachable ones are links */}
                     <ol className="flex gap-1" aria-label="Sections in this plan">
-                        {record.sections.map((s) => {
+                        {plan.sections.map((s) => {
                             const tone =
                                 s.number === section.number
                                     ? "bg-brand"
@@ -99,8 +98,8 @@ export default async function LessonPage(props: PageProps<"/your-plans/[planId]/
                     // Remount when switching sections so the step and quiz state reset
                     key={`${plan.id}-${section.number}`}
                     section={section}
-                    allowSkipping={record.rules.allowSkipping}
-                    planHref={plan.href}
+                    allowSkipping={plan.rules.allowSkipping}
+                    planHref={`/your-plans/${plan.id}`}
                 />
             )}
 
