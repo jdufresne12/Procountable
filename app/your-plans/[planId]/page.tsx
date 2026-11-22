@@ -2,6 +2,8 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowRight, CalendarDays, Check, Clock, Layers, Pause, Play, RefreshCcw, RotateCcw, X } from "lucide-react"
 import { formatDayLabel, formatISOToShortDate, formatMinutes, formatShortDate, weeksBetween } from "@/lib/dates"
+import { getPlanActivity, getPlanSummary, type PlanSection } from "@/lib/server/plans"
+import { getSectionSteps, lessonHref } from "@/lib/helpers"
 import {
     Breadcrumbs,
     OutcomeBadge,
@@ -14,30 +16,21 @@ import {
     primaryButton,
     secondaryButton,
 } from "@/components/plans/bits"
-import { getPlan, type PlanSection as PlanSectionNew } from "@/lib/server/plans"
-import { getSectionSteps, lessonHref } from "@/lib/mock-data"
 
 export default async function PlanPage(props: PageProps<"/your-plans/[planId]">) {
     const { planId } = await props.params
-
-    const plan = await getPlan(planId)
+    const [plan, activity] = await Promise.all([getPlanSummary(planId), getPlanActivity(planId)])
     if (!plan) notFound()
-
-    console.log("plan", plan)
 
     const current = plan.sections.find((s) => s.status === "current")
     const doneCount = plan.sections.filter((s) => s.status === "done").length
     const results = plan.sections.filter((s) => s.mastery)
     const weeks = Array.from(new Set(plan.sections.map((s) => s.week))).sort((a, b) => a - b)
 
-    const progress = (): number => {
-        const currStepCount = current?.currentStep === "learn"
-            ? 0
-            : current?.currentStep === "practice"
-                ? 1 / 3
-                : 2 / 3
-        return Math.trunc((doneCount + currStepCount) / plan.sections.length * 100)
-    }
+    const stepFraction = { learn: 0, practice: 1 / 3, check: 2 / 3 } as const
+    const progress = Math.trunc(
+        ((doneCount + (current?.currentStep ? stepFraction[current.currentStep] : 0)) / plan.sections.length) * 100
+    )
 
     return (
         <main className="mx-auto flex w-full max-w-7xl flex-col gap-7 px-4 py-8 sm:px-6 lg:py-10">
@@ -92,11 +85,11 @@ export default async function PlanPage(props: PageProps<"/your-plans/[planId]">)
 
                 <div className={`${card} flex flex-wrap items-center gap-x-8 gap-y-4 p-5`}>
                     <div className="flex items-baseline gap-2">
-                        <span className="font-heading text-4xl font-bold">{progress()}%</span>
+                        <span className="font-heading text-4xl font-bold">{progress}%</span>
                         <span className="text-sm text-slate-500">complete</span>
                     </div>
                     <div className="flex min-w-60 flex-1 flex-col gap-2">
-                        <ProgressBar value={progress()} color={plan.color} className="h-3" />
+                        <ProgressBar value={progress} color={plan.color} className="h-3" />
                         <span className="text-sm text-slate-600">
                             {doneCount} of {plan.sections.length} sections done
                             {current ? ` · now on ${current.title}` : ""}
@@ -144,13 +137,13 @@ export default async function PlanPage(props: PageProps<"/your-plans/[planId]">)
 
                 {/* Side column */}
                 <aside className="flex flex-col gap-5">
-                    {plan.upcoming?.length > 0 && (
+                    {activity.upcoming?.length > 0 && (
                         <section aria-labelledby="upcoming-heading" className={`${card} flex flex-col gap-3 p-5`}>
                             <h2 id="upcoming-heading" className="font-heading text-lg font-bold">
                                 Coming up
                             </h2>
                             <ul className="flex flex-col gap-2">
-                                {plan.upcoming.map((u) => (
+                                {activity.upcoming.map((u) => (
                                     <li key={u.date + u.label} className="flex items-center gap-3 rounded-2xl bg-slate-50 p-3">
                                         <span className="w-20 shrink-0 text-xs font-bold text-slate-600">{formatDayLabel(u.date)}</span>
                                         <span className="min-w-0 flex-1 truncate text-sm font-semibold">{u.label}</span>
@@ -167,14 +160,14 @@ export default async function PlanPage(props: PageProps<"/your-plans/[planId]">)
                                 Redo queue
                             </h2>
                             <span className="rounded-full bg-sun-soft px-2.5 py-1 text-xs font-bold text-sun-ink">
-                                {plan.redo?.length || 0}
+                                {activity.redo?.length || 0}
                             </span>
                         </div>
-                        {plan.redo?.length === 0 ? (
+                        {activity.redo?.length === 0 ? (
                             <p className="text-sm text-slate-500">Nothing to redo. Missed questions show up here.</p>
                         ) : (
                             <ul className="flex flex-col gap-2">
-                                {plan.redo?.map((r) => (
+                                {activity.redo?.map((r) => (
                                     <li key={r.prompt} className="flex items-start gap-3 rounded-2xl bg-slate-50 p-3">
                                         <RotateCcw className="mt-0.5 size-4 shrink-0 text-slate-500" aria-hidden="true" />
                                         <span className="min-w-0 flex-1 text-sm">
@@ -256,7 +249,7 @@ function Rule({ on, children }: { on: boolean; children: React.ReactNode }) {
     )
 }
 
-function SectionRow({ planId, section: s }: { planId: string; section: PlanSectionNew }) {
+function SectionRow({ planId, section: s }: { planId: string; section: PlanSection }) {
     const href = lessonHref(planId, s.number)
     const isCurrent = s.status === "current"
     const isLocked = s.status === "locked"

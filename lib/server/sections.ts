@@ -3,18 +3,42 @@ import { cache } from "react"
 import { and, eq } from "drizzle-orm"
 import { db } from "@/db"
 import { sections } from "@/db/schema"
-import { requireUserId } from "./plans"
+import { requireUserId } from "./auth"
 
 const nextStep = { learn: "practice", practice: "check" } as const
 
 /**
- * Retrieves all data for a section
- * 
- * @param {string} planId - ID of Plan the Section belongs to
- * @param {string} sectionId  - ID of Section
+ * Full content for ONE section (lesson, quiz, resources, latest mastery result).
+ * Returns undefined for locked sections, so locked content never leaves the server.
+ *
+ * @param {string} planId - ID of the Plan the section belongs to
+ * @param {number} number - The section's number within the plan (1-based)
  */
-export const getSection = cache(async (planId: string, sectionId: string) => {
+export const getSection = cache(async (planId: string, number: number) => {
+    const userId = await requireUserId()
+    const plan = await db.query.plans.findFirst({
+        where: { id: planId, userId },
+        columns: { id: true },
+        with: {
+            sections: {
+                where: { number },
+                limit: 1,
+                with: {
+                    masteryChecks: {
+                        orderBy: { takenOn: "desc" },
+                        limit: 1,
+                        columns: { outcome: true, rubric: true, takenOn: true }, // no transcript/userId
+                    },
+                },
+            },
+        },
+    })
 
+    const section = plan?.sections[0]
+    if (!section || section.status === "locked") return undefined
+
+    const { masteryChecks, ...rest } = section
+    return { ...rest, mastery: masteryChecks[0] ?? null }
 })
 
 /**
@@ -36,10 +60,16 @@ export const getSection = cache(async (planId: string, sectionId: string) => {
 export async function advanceStep(planId: string, number: number) {
     const userId = await requireUserId()
     return db.transaction(async (tx) => {
-        // Check that the plan belongs to the user
         const plan = await tx.query.plans.findFirst({
             where: { id: planId, userId },
-            with: { sections: { where: { number }, limit: 1 } },
+            columns: { id: true },
+            with: {
+                sections: {
+                    where: { number },
+                    limit: 1,
+                    columns: { id: true, status: true, currentStep: true }, // only what's checked
+                },
+            },
         })
 
         const section = plan?.sections[0]
@@ -53,7 +83,6 @@ export async function advanceStep(planId: string, number: number) {
             return { finishedSection: false }
         }
 
-        // Finished section -> Close and open next 
         await tx.update(sections)
             .set({ status: "done", currentStep: null })
             .where(eq(sections.id, section.id))
@@ -63,3 +92,7 @@ export async function advanceStep(planId: string, number: number) {
         return { finishedSection: true }
     })
 }
+
+// _____ TYPES _____
+export type SectionContent = NonNullable<Awaited<ReturnType<typeof getSection>>>
+export type MasteryResult = NonNullable<SectionContent["mastery"]>

@@ -1,4 +1,7 @@
-// Full class names (not built from strings) so Tailwind can find them.
+/** Plan Color classes */
+export const dotClasses: Record<PlanColor, string> = { violet: "bg-brand/45", sun: "bg-sun", coral: "bg-coral/60" }
+
+//** Full class names (not built from strings) so Tailwind can find them. */
 export const planColorClasses: Record<PlanColor, { swatch: string; bar: string; chip: string }> = {
     violet: { swatch: "bg-brand/45", bar: "bg-brand", chip: "bg-brand-soft text-brand-ink" },
     sun: { swatch: "bg-sun", bar: "bg-sun-ink/70", chip: "bg-sun-soft text-sun-ink" },

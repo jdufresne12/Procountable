@@ -1,9 +1,9 @@
 import { Lightbulb, Sparkles } from "lucide-react"
-import { PlanSection } from "@/lib/server/plans"
+import { SectionContent } from "@/lib/server/sections"
 
 // Renders the AI-written lesson as simple blocks. When a lesson hasn't been
 // generated yet, shows the section's goals instead.
-const LessonContent = ({ section }: { section: PlanSection }) => {
+const LessonContent = ({ section }: { section: SectionContent }) => {
     if (!section.lesson?.length) {
         return (
             <div className="flex flex-col gap-4">

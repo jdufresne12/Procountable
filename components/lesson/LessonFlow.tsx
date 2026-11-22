@@ -3,14 +3,14 @@
 import { useState } from "react"
 import Link from "next/link"
 import { ArrowRight, BookOpen, Check, ExternalLink, FileText, Lock, Mic, PlayCircle, Send, Sparkles, Star, Target } from "lucide-react"
-
+import type { PlanSection } from "@/lib/server/plans"
+import { SectionContent, MasteryResult } from "@/lib/server/sections"
+import { LevelBadge, OutcomeBadge, card, focusRing, primaryButton, secondaryButton } from "@/components/plans/bits"
 import LessonContent from "./LessonContent"
 import Quiz from "./Quiz"
-import { LevelBadge, OutcomeBadge, card, focusRing, primaryButton, secondaryButton } from "@/components/plans/bits"
-import type { PlanSection, MasteryResult } from "@/lib/server/plans"
 
 type Props = {
-    section: PlanSection
+    section: SectionContent
     allowSkipping: boolean
     planHref: string
 }

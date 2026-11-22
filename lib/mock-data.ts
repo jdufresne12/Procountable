@@ -524,29 +524,6 @@ export const getPlanRecord = (planId: string) => planRecords.find((r) => r.id ==
 export const getSection = (planId: string, sectionNumber: number) =>
     getPlanRecord(planId)?.sections.find((s) => s.number === sectionNumber)
 
-// Sidebar tree, built from active plans
-const dotClasses: Record<PlanColor, string> = { violet: "bg-brand/45", sun: "bg-sun", coral: "bg-coral/60" }
-
-export const navTree: NavNode[] = [
-    { title: "Dashboard", href: "/", icon: LayoutDashboard },
-    {
-        title: "Plans",
-        href: "/your-plans",
-        icon: Layers,
-        children: planRecords
-            .filter((r) => r.lifecycle === "active")
-            .map((r) => ({
-                title: r.name,
-                href: planHref(r.id),
-                dotClass: dotClasses[r.color],
-                children: r.sections.map((s) => ({
-                    title: `${s.number}. ${s.title}`,
-                    href: lessonHref(r.id, s.number),
-                    status: s.status,
-                })),
-            })),
-    },
-]
 
 // ---------------------------------------------------------------------------
 // New plan page: a mock intake conversation and the draft it produced

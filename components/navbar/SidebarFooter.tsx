@@ -3,10 +3,7 @@
 import { SignOutButton, useClerk, useUser } from "@clerk/nextjs"
 import { LogOut, Settings } from "lucide-react"
 
-const row =
-    "flex h-11 w-full items-center gap-3 rounded-xl px-3 text-left text-[15px] font-medium text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-
-const SidebarFooter = () => {
+export default function SidebarFooter() {
     const { user } = useUser()
 
     return (
@@ -27,7 +24,12 @@ const SidebarFooter = () => {
 
             {/* Redirects to afterSignOutUrl set on <ClerkProvider> */}
             <SignOutButton>
-                <button type="button" className={row}>
+                <button
+                    type="button"
+                    className="flex h-11 w-full items-center gap-3 rounded-xl px-3 text-left text-[15px] font-medium 
+                        text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 
+                        focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                >
                     <LogOut className="size-4.5 shrink-0" aria-hidden="true" />
                     Sign out
                 </button>
@@ -35,5 +37,3 @@ const SidebarFooter = () => {
         </div>
     )
 }
-
-export default SidebarFooter

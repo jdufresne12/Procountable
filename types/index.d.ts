@@ -1,3 +1,4 @@
+type NavIconName = "dashboard" | "plans"
 type PlanColor = "violet" | "sun" | "coral"
 type PlanStatus = "on-track" | "behind"
 type PlanLifecycle = "active" | "paused" | "completed"
@@ -9,9 +10,9 @@ type MasteryOutcome = "pass" | "pass-with-gaps" | "retry"
 type NavNode = {
     title: string
     href: string
-    icon?: import("lucide-react").LucideIcon // top-level items
-    dotClass?: string // plans: their color
-    status?: StepState // sections
+    icon?: NavIconName
+    dotClass?: string
+    status?: StepState
     children?: NavNode[]
 }
 

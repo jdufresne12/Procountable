@@ -1,16 +1,20 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { ArrowLeft, ArrowRight, Lock } from "lucide-react"
-import { getPlan } from "@/lib/server/plans"
-import { lessonHref } from "@/lib/mock-data"
+import { lessonHref } from "@/lib/helpers"
 import { formatMinutes } from "@/lib/dates"
 import { Breadcrumbs, PlanSwatch, card, focusRing, primaryButton } from "@/components/plans/bits"
 import LessonFlow from "@/components/lesson/LessonFlow"
+import { getPlanSummary } from "@/lib/server/plans"
+import { getSection } from "@/lib/server/sections"
 
 export default async function SectionPage(props: PageProps<"/your-plans/[planId]/section/[sectionId]">) {
     const { planId, sectionId } = await props.params
-    const plan = await getPlan(planId)
-    const section = plan?.sections.find((s) => s.number === Number(sectionId))
+    const number = Number(sectionId)
+    if (!Number.isInteger(number)) notFound()
+
+    const [plan, content] = await Promise.all([getPlanSummary(planId), getSection(planId, number)])
+    const section = plan?.sections.find((s) => s.number === number)
     if (!plan || !section) notFound()
 
     const prev = plan.sections.find((s) => s.number === section.number - 1)
@@ -68,7 +72,7 @@ export default async function SectionPage(props: PageProps<"/your-plans/[planId]
                 </div>
             </header>
 
-            {section.status === "locked" ? (
+            {section.status === "locked" || !content ? (
                 <section className={`${card} flex flex-col items-start gap-4 p-8`}>
                     <span className="flex size-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-500">
                         <Lock className="size-5" aria-hidden="true" />
@@ -95,9 +99,8 @@ export default async function SectionPage(props: PageProps<"/your-plans/[planId]
                 </section>
             ) : (
                 <LessonFlow
-                    // Remount when switching sections so the step and quiz state reset
                     key={`${plan.id}-${section.number}`}
-                    section={section}
+                    section={content}
                     allowSkipping={plan.rules.allowSkipping}
                     planHref={`/your-plans/${plan.id}`}
                 />

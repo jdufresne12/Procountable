@@ -1,7 +1,8 @@
 import Link from "next/link"
 import { Check, Lock } from "lucide-react"
 import { planColorClasses } from "@/lib/plan-colors"
-import { type Plan } from "@/lib/server/plans"
+import { PlanListItem, type PlanSummary } from "@/lib/server/plans"
+import { badgeTones } from "@/lib/helpers"
 
 // Small presentational pieces shared by the plan, lesson and "your plans" pages.
 
@@ -15,14 +16,7 @@ export function PlanSwatch({ color, className = "size-3" }: { color: PlanColor; 
     return <span className={`shrink-0 rounded ${planColorClasses[color].swatch} ${className}`} aria-hidden="true" />
 }
 
-const badgeTones = {
-    "on-track": "bg-mint-soft text-mint-ink",
-    "behind": "bg-coral-soft text-coral-ink",
-    "paused": "bg-slate-100 text-slate-700",
-    "completed": "bg-brand-soft text-brand-ink",
-}
-
-export function PlanStatusBadge({ lifecycle, schedule, daysBehind }: Plan) {
+export function PlanStatusBadge({ lifecycle, schedule, daysBehind }: PlanSummary | PlanListItem) {
     const tone = lifecycle === "active" ? badgeTones[schedule] : badgeTones[lifecycle]
 
     let statusLabel

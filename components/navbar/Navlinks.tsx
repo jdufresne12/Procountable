@@ -3,8 +3,8 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useId, useState } from "react"
+import { Layers, LayoutDashboard, type LucideIcon } from "lucide-react"
 import { Check, ChevronRight, Lock, Settings } from "lucide-react"
-import { navTree } from "@/lib/mock-data"
 import { useClerk } from "@clerk/nextjs"
 
 // Sizes per level: top items, plans, sections
@@ -13,8 +13,11 @@ const rowSize = [
     "h-10 gap-2.5 rounded-lg px-2.5 text-sm",
     "h-9 gap-2.5 rounded-lg px-2.5 text-[13px]",
 ]
-
 const focusRing = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+const navIcons: Record<NavIconName, LucideIcon> = {
+    dashboard: LayoutDashboard,
+    plans: Layers,
+}
 
 const NavItem = ({ node, depth }: { node: NavNode; depth: number }) => {
     const pathname = usePathname()
@@ -42,6 +45,7 @@ const NavItem = ({ node, depth }: { node: NavNode; depth: number }) => {
             ? "font-semibold text-slate-900"
             : "font-medium text-slate-600 hover:text-slate-900"
     const label = <span className="min-w-0 flex-1 truncate">{node.title}</span>
+    const Icon = node.icon ? navIcons[node.icon] : null
 
     return (
         <li>
@@ -58,7 +62,7 @@ const NavItem = ({ node, depth }: { node: NavNode; depth: number }) => {
                         aria-current={isExact ? "page" : undefined}
                         className={`flex min-w-0 flex-1 items-center ${size} ${textTone} ${focusRing}`}
                     >
-                        {node.icon && <node.icon className="size-4.5 shrink-0" aria-hidden="true" />}
+                        {Icon && <Icon className="size-4.5 shrink-0" aria-hidden="true" />}
                         {node.dotClass && <span className={`size-2.5 shrink-0 rounded-lg ${node.dotClass}`} aria-hidden="true" />}
                         {node.status === "done" && (
                             <span className="flex size-4.5 shrink-0 items-center justify-center rounded-full bg-sun text-slate-950">
@@ -105,7 +109,7 @@ const NavItem = ({ node, depth }: { node: NavNode; depth: number }) => {
     )
 }
 
-const NavLinks = () => {
+export default function NavLinks({ navTree }: { navTree: NavNode[] }) {
     const { openUserProfile } = useClerk()
     return (
         <ul className="flex flex-col gap-1">
@@ -125,5 +129,3 @@ const NavLinks = () => {
         </ul>
     )
 }
-
-export default NavLinks

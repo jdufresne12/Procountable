@@ -1,9 +1,10 @@
 import Link from "next/link"
 import { ArrowRight, Plus, RefreshCcw } from "lucide-react"
-
-import { allPlans, getCurrentSection, getPlanRecord, lessonHref } from "@/lib/mock-data"
+import { getPlans, type PlanListItem } from "@/lib/server/plans"
+import { planHref, lessonHref, planProgress } from "@/lib/helpers"
 import { formatDayLabel, formatShortDate, weeksBetween } from "@/lib/dates"
 import { PlanStatusBadge, PlanSwatch, ProgressBar, card, darkButton, focusRing, primaryButton, secondaryButton } from "@/components/plans/bits"
+import { notFound } from "next/navigation"
 
 const tabs = [
     { id: "active", label: "Active" },
@@ -16,6 +17,11 @@ type TabId = (typeof tabs)[number]["id"]
 export default async function YourPlansPage(props: PageProps<"/your-plans">) {
     const { tab: tabParam } = await props.searchParams
     const tab: TabId = tabs.some((t) => t.id === tabParam) ? (tabParam as TabId) : "active"
+
+    const allPlans: PlanListItem[] = await getPlans()
+    if (!allPlans) notFound()
+
+    // console.log(allPlans)
 
     const counts = Object.fromEntries(tabs.map((t) => [t.id, allPlans.filter((p) => p.lifecycle === t.id).length]))
     const visible = allPlans.filter((p) => p.lifecycle === tab)
@@ -38,9 +44,8 @@ export default async function YourPlansPage(props: PageProps<"/your-plans">) {
                                 key={t.id}
                                 href={t.id === "active" ? "/your-plans" : `/your-plans?tab=${t.id}`}
                                 aria-current={isActive ? "page" : undefined}
-                                className={`inline-flex h-10 items-center rounded-xl px-4 text-sm font-semibold transition-colors ${focusRing} ${
-                                    isActive ? "bg-slate-950 text-white" : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
-                                }`}
+                                className={`inline-flex h-10 items-center rounded-xl px-4 text-sm font-semibold transition-colors ${focusRing} ${isActive ? "bg-slate-950 text-white" : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                                    }`}
                             >
                                 {t.label} ({counts[t.id]})
                             </Link>
@@ -77,40 +82,40 @@ export default async function YourPlansPage(props: PageProps<"/your-plans">) {
     )
 }
 
-function PlanCard({ plan }: { plan: Plan }) {
-    const record = getPlanRecord(plan.id)!
-    const current = getCurrentSection(record)
-    const done = record.sections.filter((s) => s.status === "done")
-    const checks = done.filter((s) => s.mastery)
-    const gaps = checks.filter((s) => s.mastery?.outcome === "pass-with-gaps").length
-    const weeks = weeksBetween(record.startDate, record.endDate)
+function PlanCard({ plan }: { plan: PlanListItem }) {
+    const { total, current, currentNumber, percent } = planProgress(plan.sections)
+    const done = plan.sections.filter((s) => s.status === "done")
+    const checks = done.filter((s) => s.mastery && s.mastery.outcome !== "retry")
+    const gaps = checks.filter((s) => s.mastery!.outcome === "pass-with-gaps").length
+    const weeks = weeksBetween(plan.startDate, plan.endDate)
+
+    console.log(current)
 
     const meta =
         plan.lifecycle === "completed"
-            ? `${weeks} weeks · completed ${formatShortDate(record.completedOn ?? record.endDate)}`
+            ? `${weeks} weeks · completed ${formatShortDate(plan.completedOn ?? plan.endDate)}`
             : plan.lifecycle === "paused"
-                ? `Paused ${formatShortDate(record.pausedOn ?? record.startDate)} · ${weeks} weeks planned`
-                : `${weeks} weeks · ${formatShortDate(record.startDate)} – ${formatShortDate(record.endDate)}`
+                ? `Paused ${formatShortDate(plan.pausedOn ?? plan.startDate)} · ${weeks} weeks planned`
+                : `${weeks} weeks · ${formatShortDate(plan.startDate)} – ${formatShortDate(plan.endDate)}`
 
     const progressLabel =
         plan.lifecycle === "completed"
-            ? `${plan.totalSections} of ${plan.totalSections} sections`
-            : `Section ${plan.currentSection} of ${plan.totalSections}${current ? `: ${current.title}` : ""}`
+            ? `${total} of ${total} sections`
+            : `Section ${currentNumber} of ${total}${current ? `: ${current.title}` : ""}`
 
-    const stats =
-        plan.lifecycle === "completed"
-            ? [
-                { k: "Checks passed", v: `${checks.length}` },
-                { k: "With gaps", v: `${gaps}` },
-                { k: "Hours / week", v: `${record.hoursPerWeek}` },
-            ]
-            : [
-                { k: "Checks passed", v: `${checks.length} of ${done.length}` },
-                { k: "Redo queue", v: `${record.redo.length}` },
-                { k: "Hours / week", v: `${record.hoursPerWeek}` },
-            ]
+    const stats = plan.lifecycle === "completed"
+        ? [
+            { k: "Checks passed", v: `${checks.length}` },
+            { k: "With gaps", v: `${gaps}` },
+            { k: "Hours / week", v: `${plan.hoursPerWeek}` },
+        ]
+        : [
+            { k: "Checks passed", v: `${checks.length} of ${done.length}` },
+            { k: "Redo queue", v: `${plan.redoCount}` },
+            { k: "Hours / week", v: `${plan.hoursPerWeek}` },
+        ]
 
-    const next = record.upcoming[0]
+    const next = plan.next
 
     return (
         <article className={`${card} flex flex-col gap-4 p-6`}>
@@ -119,22 +124,22 @@ function PlanCard({ plan }: { plan: Plan }) {
                     <PlanSwatch color={plan.color} className="h-11 w-3.5 rounded-md" />
                     <div className="min-w-0">
                         <h2 className="truncate font-heading text-xl font-bold">
-                            <Link href={plan.href} className="hover:underline">
+                            <Link href={planHref(plan.id)} className="hover:underline">
                                 {plan.name}
                             </Link>
                         </h2>
                         <p className="text-[13px] text-slate-500">{meta}</p>
                     </div>
                 </div>
-                <PlanStatusBadge plan={plan} />
+                <PlanStatusBadge {...plan} />
             </div>
 
             <div className="flex flex-col gap-2">
                 <div className="flex justify-between gap-3 text-sm">
                     <span className="truncate font-semibold">{progressLabel}</span>
-                    <span className="font-bold">{plan.progress}%</span>
+                    <span className="font-bold">{percent}%</span>
                 </div>
-                <ProgressBar value={plan.progress} color={plan.color} className="h-2.5" />
+                <ProgressBar value={percent} color={plan.color} className="h-2.5" />
             </div>
 
             <dl className="grid grid-cols-3 gap-2">
@@ -146,7 +151,7 @@ function PlanCard({ plan }: { plan: Plan }) {
                 ))}
             </dl>
 
-            {plan.lifecycle === "active" && plan.status === "behind" && (
+            {plan.lifecycle === "active" && plan.schedule === "behind" && (
                 <div className="flex flex-wrap items-center gap-3 rounded-2xl bg-coral-soft px-4 py-3.5">
                     <p className="min-w-48 flex-1 text-sm text-coral-ink">
                         You missed a few sessions. Rebalancing spreads them over the coming weeks and keeps your end date.
@@ -173,7 +178,7 @@ function PlanCard({ plan }: { plan: Plan }) {
                         <ArrowRight className="size-4" aria-hidden="true" />
                     </Link>
                 ) : (
-                    <Link href={plan.href} className={secondaryButton}>
+                    <Link href={planHref(plan.id)} className={secondaryButton}>
                         {plan.lifecycle === "paused" ? "Resume plan" : "Review"}
                     </Link>
                 )}

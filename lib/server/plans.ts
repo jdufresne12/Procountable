@@ -1,32 +1,57 @@
 import "server-only"
 import { cache } from "react"
-import { auth } from "@clerk/nextjs/server"
 import { db } from "@/db"
-import { masteryChecks, redoItems } from "@/db/schema"
-
-export async function requireUserId() {
-    const { userId } = await auth()
-    if (!userId) throw new Error("Unauthorized")
-    return userId
-}
-
-const stepLabels = { learn: "learn", practice: "practice", check: "mastery check" } as const
+import { requireUserId } from "./auth"
+import { stepLabels, scheduleLabel } from "@/lib/helpers"
 
 /**
- * Retrieves and builds a PlanRecord object
- * 
- * @params {string} planID - ID of the plan to gather    
- * @returns {PlanRecord} All data relevant to a specific plan (sections, rule, start/end, etc.)                         
+ * Plan fields + a light list of every section (no lesson content).
+ * Shared by the plan page, the section page, and generateMetadata.
+ *
+ * @param {string} planId - ID of the plan
+ * @returns {PlanSummary} The plan with light sections, or undefined if missing / not the user's
  */
-export const getPlan = cache(async (planId: string) => {
+export const getPlanSummary = cache(async (planId: string) => {
     const userId = await requireUserId()
     const row = await db.query.plans.findFirst({
         where: { id: planId, userId },
         with: {
             sections: {
                 orderBy: { number: "asc" },
-                with: { masteryChecks: { orderBy: { takenOn: "desc" }, limit: 1 } },
+                columns: { lesson: false, quiz: false, resources: false },
+                with: {
+                    masteryChecks: {
+                        orderBy: { takenOn: "desc" },
+                        limit: 1,
+                        columns: { outcome: true, takenOn: true }
+                    },
+                }
             },
+        },
+    })
+    if (!row) return undefined
+
+    return {
+        ...row,
+        sections: row.sections.map(({ masteryChecks, ...section }) => ({
+            ...section,
+            mastery: masteryChecks[0] ?? null
+        }))
+    }
+})
+
+/**
+ * Plan page sidebar data: open redo items and the next few scheduled sessions.
+ *
+ * @param {string} planId - ID of the plan
+ * @returns {PlanActivity}
+ */
+export const getPlanActivity = cache(async (planId: string) => {
+    const userId = await requireUserId()
+    const row = await db.query.plans.findFirst({
+        where: { id: planId, userId },
+        columns: { id: true },
+        with: {
             redoItems: {
                 where: { resolvedAt: { isNull: true } },
                 orderBy: { nextReviewOn: "asc" },
@@ -40,22 +65,16 @@ export const getPlan = cache(async (planId: string) => {
             },
         },
     })
-    if (!row) return undefined
+    if (!row) return { upcoming: [], redo: [] }
 
-    const { sections, scheduleEntries, redoItems, ...plan } = row
     return {
-        ...plan,
-        sections: sections.map(({ masteryChecks, ...section }) => ({
-            ...section,
-            mastery: masteryChecks[0] ?? null,
-        })),
-        upcoming: scheduleEntries.map((e) => ({
+        upcoming: row.scheduleEntries.map((e) => ({
             id: e.id,
             date: e.date,
             minutes: e.minutes,
             label: e.section && e.step ? `${e.section.title}: ${stepLabels[e.step]}` : "Study session",
         })),
-        redo: redoItems.map((r) => ({
+        redo: row.redoItems.map((r) => ({
             id: r.id,
             prompt: r.prompt,
             section: r.section?.number ?? null,
@@ -65,26 +84,65 @@ export const getPlan = cache(async (planId: string) => {
 
 
 /**
- * Retrieves all learning plans with an optional lifecyle filter
- * 
- * @params {enum: "active" | "paused" | "completed" } lifecyle - Optional lifecyle filter
- * @returns {Plan[]} An array of Plans
+ * All of the user's plans (shaped for plan cards on /your-plans).
+ *
+ * @returns {PlanListItem[]}
  */
-export const getPlans = cache(async (lifecycle?: "active" | "paused" | "completed") => {
+export const getPlans = cache(async () => {
     const userId = await requireUserId()
     const rows = await db.query.plans.findMany({
-        where: { userId, ...(lifecycle ? { lifecycle } : {}) },
+        where: { userId },
         orderBy: { createdAt: "desc" },
-        with: { sections: { columns: { number: true, title: true, status: true, currentStep: true } } },
+        with: {
+            sections: {
+                orderBy: { number: "asc" },
+                columns: { number: true, title: true, status: true, currentStep: true },
+                with: {
+                    masteryChecks: { orderBy: { takenOn: "desc" }, limit: 1, columns: { outcome: true } },
+                },
+            },
+            redoItems: { where: { resolvedAt: { isNull: true } }, columns: { id: true } },
+            scheduleEntries: {
+                where: { done: false },
+                orderBy: { date: "asc" },
+                limit: 1,
+                with: { section: { columns: { title: true } } },
+            },
+        },
     })
+
+    return rows.map(({ sections, redoItems, scheduleEntries, ...plan }) => {
+        const next = scheduleEntries[0]
+        return {
+            ...plan,
+            sections: sections.map(({ masteryChecks, ...s }) => ({ ...s, mastery: masteryChecks[0] ?? null })),
+            redoCount: redoItems.length,
+            next: next ? { date: next.date, label: scheduleLabel(next) } : null,
+        }
+    })
+})
+
+export const getNavPlans = cache(async () => {
+    const userId = await requireUserId()
+    const rows = await db.query.plans.findMany({
+        where: { userId },
+        orderBy: { createdAt: "desc" },
+        columns: { id: true, name: true, color: true, lifecycle: true },
+        with: {
+            sections: {
+                columns: { title: true, number: true, status: true },
+                orderBy: { number: "asc" }
+            }
+        }
+    })
+    if (!rows) return undefined
+
     return rows
 })
 
-// _____ Return Object Types _____
-export type Plan = NonNullable<Awaited<ReturnType<typeof getPlan>>>
-export type PlanSection = Plan["sections"][number]
-export type MasteryResult = Pick<NonNullable<PlanSection["mastery"]>, "outcome" | "rubric" | "takenOn">
-
-/* _____ NOTES _____
-    cache(): called by both the page and generateMetadata? Only one query runs.
-*/
+// _____ TYPES _____
+export type PlanSummary = NonNullable<Awaited<ReturnType<typeof getPlanSummary>>>
+export type PlanSection = PlanSummary["sections"][number]
+export type PlanActivity = Awaited<ReturnType<typeof getPlanActivity>>
+export type PlanListItem = Awaited<ReturnType<typeof getPlans>>[number]
+export type NavPlan = NonNullable<Awaited<ReturnType<typeof getNavPlans>>>
