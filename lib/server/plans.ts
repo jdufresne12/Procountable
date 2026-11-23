@@ -122,22 +122,25 @@ export const getPlans = cache(async () => {
     })
 })
 
+/**
+ * Users plans formatted for the Navbar.
+ * Utilizes the getPlans() DAL to avoid unnecessary calls to the DB (cache)
+ * 
+ * @returns {NavPlan[]}
+ */
 export const getNavPlans = cache(async () => {
-    const userId = await requireUserId()
-    const rows = await db.query.plans.findMany({
-        where: { userId },
-        orderBy: { createdAt: "desc" },
-        columns: { id: true, name: true, color: true, lifecycle: true },
-        with: {
-            sections: {
-                columns: { title: true, number: true, status: true },
-                orderBy: { number: "asc" }
-            }
-        }
-    })
-    if (!rows) return undefined
-
-    return rows
+    const plans = await getPlans()
+    return plans.map(({ id, name, color, sections, lifecycle }) => ({
+        id,
+        name,
+        color,
+        lifecycle,
+        sections: sections.map(({ number, title, status }) => ({
+            number,
+            title,
+            status
+        })),
+    }))
 })
 
 // _____ TYPES _____
@@ -145,4 +148,4 @@ export type PlanSummary = NonNullable<Awaited<ReturnType<typeof getPlanSummary>>
 export type PlanSection = PlanSummary["sections"][number]
 export type PlanActivity = Awaited<ReturnType<typeof getPlanActivity>>
 export type PlanListItem = Awaited<ReturnType<typeof getPlans>>[number]
-export type NavPlan = NonNullable<Awaited<ReturnType<typeof getNavPlans>>>
+export type NavPlan = Awaited<ReturnType<typeof getNavPlans>>

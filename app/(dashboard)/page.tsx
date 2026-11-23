@@ -1,15 +1,16 @@
 import { currentUser } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
 
-import { alsoToday, getPlan, mockUser, plans, redoQueue, stats, upNext, week } from "@/lib/mock-data"
+import { alsoToday, getPlan, mockUser, plans, redoQueue, upNext, week } from "@/lib/mock-data"
 import { formatLongDate, formatMinutes, getGreeting } from "@/lib/dates"
 import UpNextCard from "@/components/dashboard/UpNextCard"
 import AlsoToday from "@/components/dashboard/AlsoToday"
-import StatTiles from "@/components/dashboard/StatTiles"
+import StatTiles, { StatTilesSkeleton } from "@/components/dashboard/StatTiles"
 import WeekCalendar from "@/components/dashboard/WeekCalender"
 import ActivePlans from "@/components/dashboard/ActivePlans"
+import { Suspense } from "react"
 
-export default async function Home() {
+export default async function Dashboard() {
   const user = await currentUser()
   if (!user) redirect("/sign-in")
 
@@ -48,7 +49,9 @@ export default async function Home() {
         </div>
       </section>
 
-      <StatTiles stats={stats} />
+      <Suspense fallback={<StatTilesSkeleton />}>
+        <StatTiles />
+      </Suspense>
 
       <WeekCalendar rangeLabel={week.rangeLabel} days={week.days} plans={plans} />
 

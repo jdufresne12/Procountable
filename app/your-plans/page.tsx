@@ -21,8 +21,6 @@ export default async function YourPlansPage(props: PageProps<"/your-plans">) {
     const allPlans: PlanListItem[] = await getPlans()
     if (!allPlans) notFound()
 
-    // console.log(allPlans)
-
     const counts = Object.fromEntries(tabs.map((t) => [t.id, allPlans.filter((p) => p.lifecycle === t.id).length]))
     const visible = allPlans.filter((p) => p.lifecycle === tab)
 
@@ -88,8 +86,6 @@ function PlanCard({ plan }: { plan: PlanListItem }) {
     const checks = done.filter((s) => s.mastery && s.mastery.outcome !== "retry")
     const gaps = checks.filter((s) => s.mastery!.outcome === "pass-with-gaps").length
     const weeks = weeksBetween(plan.startDate, plan.endDate)
-
-    console.log(current)
 
     const meta =
         plan.lifecycle === "completed"

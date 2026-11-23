@@ -1,4 +1,3 @@
-import { Layers, LayoutDashboard } from "lucide-react"
 import { type PlanSection as PlanSectionNew } from "@/lib/server/plans"
 
 // =============================================================================

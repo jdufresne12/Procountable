@@ -13,6 +13,13 @@ export const badgeTones = {
     completed: "bg-brand-soft text-brand-ink",
 } as const
 
+/** Color classes for stat tiles */
+export const toneClasses: Record<Stat["tone"], string> = {
+    sun: "bg-sun-soft",
+    coral: "bg-coral-soft",
+    mint: "bg-mint-soft",
+}
+
 // ============================================================================
 // Lesson Steps
 // ============================================================================

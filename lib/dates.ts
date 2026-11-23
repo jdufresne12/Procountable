@@ -1,6 +1,36 @@
 // Date helpers that take an explicit time zone
 
-function hourIn(date: Date, timeZone: string) {
+export function getCurrentWeek() {
+    const today = new Date()
+    const dayOfWeek = today.getDay()
+
+    // Find Monday of the current week
+    const monday = new Date(today)
+    monday.setDate(today.getDate() - ((dayOfWeek + 6) % 7))
+    monday.setHours(0, 0, 0, 0)
+
+    const week = Array.from({ length: 7 }, (_, i) => {
+        const date = new Date(monday)
+        date.setDate(monday.getDate() + i)
+        return date
+    })
+
+    const formattedWeek = week.map(date => ({
+        month: new Intl.DateTimeFormat("en-US", {
+            month: "short",
+        }).format(date),
+        monthNumber: date.getMonth() + 1,
+        day: new Intl.DateTimeFormat("en-US", {
+            weekday: "short"
+        }).format(date),
+        dayNumber: date.getDate(),
+        year: date.getFullYear()
+    }))
+
+    return formattedWeek
+}
+
+export function hourIn(date: Date, timeZone: string) {
     return Number(
         new Intl.DateTimeFormat("en-US", { hour: "numeric", hourCycle: "h23", timeZone }).format(date),
     )
