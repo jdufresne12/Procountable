@@ -2,14 +2,17 @@ import {
     boolean, date, index, integer, jsonb, pgEnum,
     snakeCase, text, timestamp, unique, uuid
 } from "drizzle-orm/pg-core"
+import type { UIMessage } from "ai"
+import type { Intake } from "@/lib/ai/intake"
 
 // _______ ENUMS _______
+export const draftStatus = pgEnum("draft_status", ["intake", "outlined", "committed", "abandoned"])
+export const masteryOutcome = pgEnum("mastery_outcome", ["pass", "pass-with-gaps", "retry"])
 export const planColor = pgEnum("plan_color", ["violet", "sun", "coral"])
 export const planLifecycle = pgEnum("plan_lifecycle", ["active", "paused", "completed"])
 export const planSchedule = pgEnum("plan_schedule", ["on-track", "behind"])
 export const sectionStatus = pgEnum("section_status", ["done", "current", "locked"])
 export const sectionStep = pgEnum("section_step", ["learn", "practice", "check"])
-export const masteryOutcome = pgEnum("mastery_outcome", ["pass", "pass-with-gaps", "retry"])
 
 // Spread into any table that needs them
 const timestamps = {
@@ -39,6 +42,21 @@ export const plans = snakeCase.table("plans",
         ...timestamps,
     },
     (t) => [index().on(t.userId)],
+)
+
+// ______ Plan Drafts ______
+export const planDrafts = snakeCase.table("plan_drafts",
+    {
+        id: uuid().primaryKey().defaultRandom(),
+        userId: text().notNull(),
+        status: draftStatus().notNull().default("intake"),
+        messages: jsonb().$type<UIMessage[]>().notNull().default([]),
+        intake: jsonb().$type<Partial<Intake>>().notNull().default({}),
+        draft: jsonb().$type<Record<string, unknown>>(),                        // the outline, milestone 4
+        planId: text().references(() => plans.id, { onDelete: "set null" }),   // set on commit, milestone 5
+        ...timestamps,
+    },
+    (t) => [index().on(t.userId, t.status)],
 )
 
 // ______ Sections ______
@@ -124,3 +142,4 @@ export const scheduleEntries = snakeCase.table("schedule_entries",
 export type PlanRow = typeof plans.$inferSelect     // shape a SELECT returns
 export type NextPlanRow = typeof plans.$inferInsert // shape an INSERT returns
 export type SectionRow = typeof sections.$inferSelect
+export type DraftRow = typeof planDrafts.$inferSelect

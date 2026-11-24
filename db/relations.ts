@@ -7,6 +7,9 @@ export const relations = defineRelations(schema, (r) => ({
         redoItems: r.many.redoItems(),
         scheduleEntries: r.many.scheduleEntries(),
     },
+    planDrafts: {
+        plan: r.one.plans({ from: r.planDrafts.planId, to: r.plans.id }),
+    },
     sections: {
         plan: r.one.plans({ from: r.sections.planId, to: r.plans.id, optional: false }),
         quizAttempts: r.many.quizAttempts(),

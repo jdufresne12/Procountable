@@ -48,7 +48,6 @@ export const getStats = cache(async () => {
     let redoCount = 0, acrossCount = 0
     let taskCount = 0, plansBehind = 0
     let checksPassed = 0, checksTotal = 0, checksWithGaps = 0
-    console.log(rows)
 
     rows.forEach((plan) => {
         if (plan.redoItems.length > 0) {

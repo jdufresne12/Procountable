@@ -3,7 +3,6 @@ import { getStats } from "@/lib/server/dashboard"
 
 export default async function StatTiles() {
     const stats: Stat[] = await getStats()
-    console.log(stats)
     return (
         <section aria-label="Stats" className="grid gap-4 sm:grid-cols-3">
             {stats.map((stat) => (
